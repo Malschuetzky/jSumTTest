@@ -6,7 +6,7 @@
         `type`="software", 
         `author`="Malsch\u00FCtzky, M.", 
         `year`=2024, 
-        `title`="jSumTTest: Independent Samples Test for Summary Data (Version 0.8.1)", 
+        `title`="jSumTTest: Independent Samples Test for Summary Data (Version 0.8.1-beta)", 
         `publisher`="[jamovi module]"), 
     `ggplot2`=list(
         `type`="software", 
