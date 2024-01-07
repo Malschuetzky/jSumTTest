@@ -39,6 +39,32 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
+# renv library
+renv/library/
+renv/staging/
+
+# jamovi options js
+jamovi/ui/*.options.js
+
+# packaged module
+*.jmo
+old_jmo/
+
+# build folders
+build/
+build*/
+
+# other files / folders
+temp/
+man/
+.DS_Store
+npm-debug.log
+inst/doc
+tests/testthat/Rplots.pdf
+
+# R Environment Variables
+.Renviron
+
 # pkgdown site
 docs/
 

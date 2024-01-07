@@ -1,0 +1,156 @@
+title: Independent Samples Test for Summary Data
+name: jSumTTest
+jus: '3.0'
+stage: 0
+compilerMode: tame # aggressive
+children:
+  - type: LayoutBox
+    margin: large
+    stretchFactor: 1
+    children:
+    
+      - type: LayoutBox
+        cell:
+          column: 0
+          row: 0
+        stretchFactor: 1
+        
+        children:
+          - type: Label
+            label: Group One descriptives
+            children:
+            
+              - type: TextBox
+                name: M1
+                format: number
+                
+              - type: TextBox
+                name: SD1
+                format: number
+                
+              - type: TextBox
+                name: n1
+                format: number
+                
+              - type: TextBox
+                name: name1
+                format: string
+                
+      - type: LayoutBox
+        cell:
+          column: 1
+          row: 0
+        stretchFactor: 1
+        
+        children:
+          - type: Label
+            label: Group Two descriptives
+            
+            children:
+              - type: TextBox
+                name: M2
+                format: number
+                
+              - type: TextBox
+                name: SD2
+                format: number
+                
+              - type: TextBox
+                name: n2
+                format: number
+                
+              - type: TextBox
+                name: name2
+                format: string 
+                
+      - type: LayoutBox
+        cell:
+          column: 0
+          row: 1
+        stretchFactor: 1
+        
+        children:
+          - type: Label
+            label: Hypothesis
+            
+            children:
+              - name: hypo_notequal
+                type: RadioButton
+                optionName: hypo
+                optionPart: notequal
+                
+              - name: hypo_onegreater
+                type: RadioButton
+                optionName: hypo
+                optionPart: onegreater
+                
+              - name: hypo_twogreater
+                type: RadioButton
+                optionName: hypo
+                optionPart: twogreater
+                
+          - type: Label
+            label: Additional options
+            
+            children:
+              - type: CheckBox
+                name: d_show
+                
+                children:
+                  - type: CheckBox
+                    name: CI_d_show
+                    enable: (d_show)
+                    style: inline
+                    verticalAlignment: center
+                    children:
+                      - type: TextBox
+                        name: CI_d_width
+                        format: number
+                        label: ''
+                        suffix: "%"
+                        enable: (CI_d_show)
+                
+              - type: CheckBox
+                name: Mdiff_show
+                
+                children:
+                  - type: CheckBox
+                    name: SEdiff_show
+                    enable: (Mdiff_show)
+                    
+                  - type: CheckBox
+                    name: CI_show
+                    enable: (Mdiff_show)
+                    style: inline
+                    verticalAlignment: center
+                    children:
+                      - type: TextBox
+                        name: CIdiff_width
+                        format: number
+                        label: ''
+                        suffix: "%"
+                        enable: (Mdiff_show && CI_show)
+                    
+              - type: CheckBox
+                name: desc_show
+                
+                children:
+                  - type: CheckBox
+                    name: SE_M_show
+                    enable: (desc_show)
+                    
+                  - type: CheckBox
+                    name: CI_M_show
+                    enable: (desc_show)
+                    style: inline
+                    verticalAlignment: center
+                    children:
+                      - type: TextBox
+                        name: CI_M_width
+                        format: number
+                        label: ''
+                        suffix: "%"
+                        enable: ((desc_show && CI_M_show) || dplot_show)
+                
+              - type: CheckBox
+                name: dplot_show

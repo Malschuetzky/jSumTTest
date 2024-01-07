@@ -1,0 +1,140 @@
+---
+name:  jSumTTest
+title: Independent Samples Test for Summary Data
+menuGroup: T-Tests #jSumTTest
+menuSubgroup: Test for Summary Data [SumTests module]
+version: '0.8.1'
+jas: '1.2'
+
+options:
+
+# Summary data group 1
+    - name: M1
+      type: Number
+      title: Group One mean
+      default: 0
+
+    - name: SD1
+      type: Number
+      title: Group One standard deviation
+      default: 0
+      
+    - name: n1
+      type: Integer
+      title: Group One sample size
+      default: 0
+
+    - name: name1
+      type: String
+      title: Group One name
+      default: 'One'     
+
+# Summary data group 2
+    - name: M2
+      type: Number
+      title: Group Two mean
+      default: 0
+
+    - name: SD2
+      type: Number
+      title: Group Two standard deviation
+      default: 0
+      
+    - name: n2
+      type: Integer
+      title: Group Two sample size
+      default: 0
+
+    - name: name2
+      type: String
+      title: Group Two name
+      default: 'Two'    
+
+
+## Options
+
+# Hypothesis
+    - name: hypo
+      title: Hypothesis
+      type: List
+      options:
+        - title: Group One ≠ Group Two
+          name:  notequal
+        - title: Group One > Group Two
+          name:  onegreater
+        - title: Group One < Group Two
+          name:  twogreater
+      default: notequal
+
+
+# t-Test table
+    - name: d_show
+      type: Bool
+      title: Cohen's d
+      default: true
+      
+    - name: CI_d_show
+      type: Bool
+      title: Convidence Interval
+      default: false      
+
+    - name: CI_d_width
+      type: Number
+      title: INI
+      min: 50
+      max: 99.9
+      default: 95
+
+    - name: Mdiff_show
+      type: Bool
+      title: Mean difference
+      default: true 
+
+    - name: SEdiff_show
+      type: Bool
+      title: SE(mean difference)
+      default: false       
+      
+    - name: CI_show
+      type: Bool
+      title: Confidence Interval
+      default: false
+      
+    - name: CIdiff_width
+      type: Number
+      title: INI
+      min: 50
+      max: 99.9
+      default: 95
+      
+      
+# Descriptives table
+    - name: desc_show
+      type: Bool
+      title: Descriptives table
+      default: true
+      
+    - name: SE_M_show
+      type: Bool
+      title: SE(mean)
+      default: true      
+      
+    - name: CI_M_show
+      type: Bool
+      title: Convidence Interval
+      default: true      
+
+    - name: CI_M_width
+      type: Number
+      title: INI
+      min: 50
+      max: 99.9
+      default: 95      
+      
+# plot      
+    - name: dplot_show
+      type: Bool
+      title: Descriptives plot
+      default: true   
+
+...

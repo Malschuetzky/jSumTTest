@@ -1,0 +1,126 @@
+---
+name:  jSumTTest
+title: Independent Samples Test for Summary Data
+jrs:   '1.1'
+
+items:
+#    - name:  text
+#      title: Two Independent Samples Tests for Summary Data
+#      type:  Preformatted
+      
+    - name: ttesttable
+      title: Independent Samples Test for Summary Data
+      type: Table
+      rows:  2
+      columns:
+        - name: var
+          title: ''
+          type: text
+          
+        - name: t
+          title: 't'
+          type: number
+          
+        - name: df
+          type: number
+          
+        - name: p
+          type: number
+          format: zto,pvalue
+          
+        - name: d
+          title: 'Cohen&rsquo;s d'
+          type: number
+          visible: (d_show)
+
+        - name: CI_d_low
+          title: Lower
+          type: number
+          visible: (d_show && CI_d_show)
+
+        - name: CI_d_upp
+          title: Upper
+          type: number
+          visible: (d_show && CI_d_show)
+          
+        - name: Mdiff
+          title: '&Delta;M'
+          type: number
+          visible: (Mdiff_show)
+          
+        - name: SEdiff
+          title: "SE(&Delta;M)"
+          type: number
+          visible: (Mdiff_show && SEdiff_show)
+          
+        - name: CIlow
+          title: Lower
+         # superTitle: Convidence Interval
+          type: number
+          visible: (Mdiff_show && CI_show)
+
+        - name: CIupp
+          title: Upper
+        #  superTitle: Convidence Interval
+          type: number
+          visible: (Mdiff_show && CI_show)
+      notes:
+        1: INI
+      refs:
+        - jSumTTest
+        - psych-R
+        
+          
+    - name: desctable
+      title: Group descriptives
+      visible: (desc_show)
+      type: Table
+      rows:  2
+      columns:
+        - name: group
+          title: 'Group'
+          type: text
+          
+        - name: n
+          title: 'n'
+          type: integer
+          
+        - name: M
+          title: 'M'
+          type: number
+          
+        - name: SD
+          title: 'SD'
+          type: number
+          
+        - name: SE
+          title: 'SE(M)'
+          type: number
+          visible: (desc_show && SE_M_show)
+          
+        - name: CI_M_low
+          title: Lower
+          superTitle: Convidence Interval
+          type: number
+          visible: (desc_show && CI_M_show)
+
+        - name: CI_M_upp
+          title: Upper
+          superTitle: Convidence Interval
+          type: number
+          visible: (desc_show && CI_M_show)
+      refs:
+        - jSumTTest
+
+          
+    - name: plot
+      title: Descriptives Plot (mean and 95 % CI)
+      type: Image
+      width: 400
+      height: 300
+      renderFun: .plot
+      visible: (dplot_show)
+      refs:
+        - jSumTTest
+        - ggplot2
+...
