@@ -2,8 +2,8 @@
 name:  jSumTTest
 title: Independent Samples Test for Summary Data
 menuGroup: T-Tests #jSumTTest
-menuSubgroup: Test for Summary Data [SumTests module]
-version: '0.8.1'
+menuSubgroup: Test for Summary Data [jSumTTest module]
+version: '0.8.2'
 jas: '1.2'
 
 options:
