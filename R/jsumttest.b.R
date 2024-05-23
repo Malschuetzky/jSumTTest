@@ -250,7 +250,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           table1$getColumn('CI_d_upp')$setSuperTitle(CI_d_h)
           
           # print table
-          table1$setNote(1,hypo_text, init=TRUE)
+          table1$setNote('1',hypo_text, init=TRUE)
           table1$setRow(rowNo=1, values=list(
             var='Student&rsquo;s',
             t=results[1,1],
