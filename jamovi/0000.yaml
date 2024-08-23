@@ -1,12 +1,12 @@
 ---
 title: Independent Samples Test for Summary Data
 name: jSumTTest
-version: 0.8.4
+version: 0.8.5
 jms: '1.0'
 authors:
   - Michael M. Malschützky
 maintainer: Michael M. Malschützky <michael.malschuetzky@h-brs.de>
-date: '2024-05-24'
+date: '2024-08-23'
 type: R
 description: >-
   Calculate Student's and Welch's t-Test (including related Cohen's d) based on
