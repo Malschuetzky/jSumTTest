@@ -1,8 +1,8 @@
 Package: jSumTTest
 Type: Package
 Title: Student and Welch t-Test for Summary Data
-Version: 0.8.5
-Date: 2024-08-23
+Version: 1.0.0
+Date: 2024-08-25
 Author: Michael M. Malschützky
 Maintainer: Michael M. Malschützky <michael.malschuetzky@h-brs.de>
 Description: Calculate Student's and Welch's t-Test (including related Cohen's d) based on summary data (mean, standard deviation, and sample size), to comprehend reported tests.

@@ -334,7 +334,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "jSumTTest",
                 name = "jSumTTest",
-                version = c(0,8,5),
+                version = c(1,0,0),
                 options = options,
                 results = jSumTTestResults$new(options=options),
                 data = data,
