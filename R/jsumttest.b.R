@@ -4,7 +4,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     private = list(
         .run = function() {
           
-          # VERSION 1.0.0 - 2024-08-25
+          # VERSION 1.0.1 - 2024-08-27
           
           
           
@@ -130,15 +130,15 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           if (hypo_tail == 'notequal') {
             # two-tailed test (M1 != M2), abs(t_Welch) otherwise p greater 1 possible
             p_Welch <- 2*pt(q=abs(t_Welch), df=df_Welch, lower.tail=FALSE)	# pt(): standard R-function
-            hypo_text <- 'H<sub>A</sub>: μ<sub>1</sub> &#8800 μ<sub>2</sub>'
+            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> &#8800 μ<sub>2</sub>'
           } else if (hypo_tail == 'onegreater') {
             # one-tailed test (M1 > M2)
             p_Welch <- pt(q=t_Welch, df=df_Welch, lower.tail=FALSE)
-            hypo_text <- 'H<sub>A</sub>: μ<sub>1</sub> > μ<sub>2</sub>'
+            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> > μ<sub>2</sub>'
           } else {
             # one-tailed test (M1 < M2)
             p_Welch <- pt(q=t_Welch, df=df_Welch, lower.tail=TRUE)
-            hypo_text <- 'H<sub>A</sub>: μ<sub>1</sub> < μ<sub>2</sub>'
+            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> < μ<sub>2</sub>'
           }
           
           # calculate Cohen's d effect size for SD1!=SD2 & n1=n2 (Cohen, 1988, eq. 2.2.2 & 2.3.2)
