@@ -20,6 +20,8 @@
 
 # RStudio files
 .Rproj.user/
+.Rbuildignore
+jSumTTest.Rproj
 
 # produced vignettes
 vignettes/*.html
