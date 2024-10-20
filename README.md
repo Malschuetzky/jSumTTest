@@ -3,7 +3,7 @@ A jamovi module to calculate Student's and Welch's t-Test (including related Coh
 
 # Background
 
-[jamovi](https://www.jamovi.org/) module. Sourced for in R-code used packages and statistical formulas are mentioned below and in the comments of the code-files.
+[jamovi](https://www.jamovi.org/) module. Sources for in R-code used packages and statistical formulas are mentioned below and in the comments of the code-files.
 
 ## Installing jSumTTest
 
