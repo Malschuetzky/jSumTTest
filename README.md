@@ -7,7 +7,7 @@ A jamovi module to calculate Student's and Welch's t-Test (including related Coh
 
 ## Installing jSumTTest
 
-Currently only available via Sideload. After installation you find the function in the register "T-Tests" under the new entry "Independent Samples Test for Summary Data".
+Currently only available via Sideload. After installation you find the function in tab "T-Tests" under the new entry "Independent Samples Test for Summary Data".
 
 # Contributing
 
