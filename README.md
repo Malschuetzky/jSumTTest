@@ -1,19 +1,13 @@
 # jSumTTest
-A jamovi module to calculate Student's and Welch's t-Test (including related Cohen's d) based on summary data (mean, standard deviation, and sample size), to comprehend reported tests.
-
-  Calculate Student's and Welch's t-Test (including related Cohen's d) based on
-  summary data (mean, standard deviation, and sample size), to comprehend
-  reported tests.
-
+A jamovi module to calculate Student's and Welch's t-Test (including related Cohen's *d*) based on summary data (mean, standard deviation, and sample size) for both groups, to comprehend reported tests if raw-data are not available.
 
 # Background
 
- [jamovi](https://www.jamovi.org/)
-module.
+[jamovi](https://www.jamovi.org/) module. Sourced for in R-code used packages and statistical formulas are mentioned below and in the comments of the code-files.
 
 ## Installing jSumTTest
 
-
+Currently only available via Sideload. After installation you find the function in the register "T-Tests" under the new entry "Independent Samples Test for Summary Data".
 
 # Contributing
 
