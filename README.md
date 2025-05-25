@@ -28,7 +28,7 @@ By using reported group descriptives (mean (*M*), standard deviation (*SD*), and
   + *p*-value
   + Cohen's *d*
   + Convidence interval for Cohen's *d* (*CI*(*d*)) of any witdh of your choice between 50 to 99.9% (default set to 95%)
-  + Mean difference (&Delta;*M*)
+  + Mean-difference (&Delta;*M*)
   + Standard error of mean-difference (*SE*(&Delta;*M*))
   + Convidence interval for mean-difference (*CI*(*SE*(&Delta;*M*))) of any witdh of your choice between 50 to 99.9% (default set to 95%)
   
