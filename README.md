@@ -72,4 +72,4 @@ Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Wo
 
 Zimmerman, D. W. (2004). A note on preliminary tests of equality of variances. *British Journal of Mathematical and Statistical Psychology*, 57(1), 173–181. https://doi.org/10.1348/000711004849222
 
-<sub>(References uses for analytical process can also be found in the comments of the code-files)</sub>
+<sub>(References used in code for analytical process can also be found in the comments of the code-files)</sub>
