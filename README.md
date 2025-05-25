@@ -1,26 +1,21 @@
 # jSumTTest
-
 A [jamovi](https://www.jamovi.org/) module to calculate Student's and Welch's t-test (including related Cohen's *d*) based on summary data (mean, standard deviation, and sample size) for both groups, if raw-data are not available.
 
 Current version: 1.0.1
 
 # Intended use
-
-## User-groups
-
+## Potential users
 + lecturers
 + students
 + reviewers
 + researchers
 + fellow psychologists &Psi; and higher ed researchers using quantitative methods
-+ all other stats-neards... We salute you :vulcan_salute:
++ all other stats-nerds... We salute you :vulcan_salute:
 
-## Applications
-
+## Potential applications
 Main application is to comprehend reported Student's and Welch's t-test without access to raw-data.
 
 By using reported group descriptives (mean (*M*), standard deviation (*SD*), and sample size(*n*) the module calculates:
-
 + Additional group descriptives:
   + Standard errors of group means (*SE*(*M*))
   + Convidence intervals for group means (*CI*(*SE*(*M*))) of any witdh of your choice between 50 to 99.9% (default set to 95%)
@@ -38,16 +33,15 @@ Additionaly, the module plots:
 + Mean and related CI for each group in one graph
 + APA-style type tables for above calculated values
 
+These additional values and plots not only supports to comprehend the reported test results and their interpretation. They also help to cope with improper use of statistical tests, e.g., calculate additional Welch's instead of a reported Student's t-test as the authors should have done right from the start, or calculate missing effect sizes. They even help to identify fraudulent analyses, e.g., p-hacking where authors claim to use two-tailed test in the method section but report one-tailed p-values in the result section. Fascinatingly, mosty happens if their two-sided p-value is between .09 and .05...
 
-
-
- to judge the reported tests, calcutlate Welch's t-test check for improper or fraudulent analyses.
+Users of psychologic tests can check the comparison of an observed group with the normative data of the used test or change the compared sub-group of the normative data.
 
 # Installing jSumTTest
 
-Currently only available via sideload. Build module for Windows can be found here :file_folder:: [DOWNLOAD](jSumTTest_1.0.1.jmo)
+Currently only available via sideload. Built module for Windows can be found here :file_folder:: [DOWNLOAD](jSumTTest_1.0.1.jmo)
 
-After installation you find the function as "Independent Samples Test for Summary Data" in tab "T-Tests" under the new sub-menu "Test for Summary Data [jSumTTest module]".
+After installation you find the function named "Independent Samples Test for Summary Data" in tab "T-Tests" under the new sub-menu "Test for Summary Data [jSumTTest module]".
 
 # Analytical process
 
