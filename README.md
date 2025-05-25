@@ -18,7 +18,7 @@ We salute you :vulcan_salute:
 ## Potential applications
 Main application is to comprehend reported Student's and Welch's t-test without access to raw-data.
 
-By using reported group descriptives (mean (*M*), standard deviation (*SD*), and sample size(*n*) the module calculates:
+By using reported group descriptives (mean (*M*), standard deviation (*SD*), and sample size (*n*) the module calculates:
 + Additional group descriptives:
   + Standard errors of group means (*SE*(*M*))
   + Convidence intervals for group means (*CI*(*SE*(*M*))) of any witdh of your choice between 50 to 99.9% (default set to 95%)
