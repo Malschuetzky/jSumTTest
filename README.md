@@ -3,13 +3,15 @@ A [jamovi](https://www.jamovi.org/) module to calculate Student's and Welch's t-
 
 Current version: 1.0.1
 
+Citation: Malschützky, M. M. (2024). *jSumTTest: Independent Samples Test for Summary Data* (Version 1.0.1) [Jamovi module]. https://github.com/Malschuetzky/jSumTTest
+
 # Intended use
 ## Potential users
 + lecturers
 + students
 + reviewers
 + researchers
-+ fellow psychologists &Psi; and higher ed researchers using quantitative methods as well as all other stats-nerds...
++ fellow psychologists &Psi; and higher ed researchers :mortar_board: using quantitative methods as well as all other stats-nerds...
 
 We salute you :vulcan_salute:
 
@@ -34,13 +36,13 @@ Additionaly, the module plots:
 + Mean and related CI for each group in one graph
 + APA-style type tables for above calculated values
 
-These additional values and plots not only supports to comprehend the reported test results and their interpretation. They also help to cope with improper use of statistical tests, e.g., calculate propper Welch's instead of a reported Student's t-test as the authors should have done right from the start ((Kubinger et al., 2009; Zimmerman, 2004)), or calculate missing effect sizes. They even help to identify fraudulent analyses, e.g., p-hacking where authors claim to use two-tailed test in the method section but report one-tailed p-values in the result section. Fascinatingly, mostly happens if their two-sided p-value is between .09 and .05...
+These additional values and plots not only supports to comprehend the reported test results and their interpretation. They also help to cope with improper use of statistical tests, e.g., calculating propper Welch's instead of a reported Student's t-test as the authors should have done right from the start (Kubinger et al., 2009; Zimmerman, 2004), or calculate missing effect sizes. They even help to identify fraudulent analyses, e.g., *p*-hacking where authors claim to use two-tailed tests in the method section but report one-tailed *p*-values in the result section instead. Fascinatingly, mostly happens if their two-sided *p*-value is between .09 and .05...
 
 Users of psychometric tests can compare an observed group with the normative data of the used test as well as check reported comparisons and even change the compared sub-group of the normative data to their needs afterwards.
 
 # Installing jSumTTest
 
-Currently only available via sideload. Built module for Windows can be found here :file_folder:: [DOWNLOAD](jSumTTest_1.0.1.jmo)
+Currently only available via sideload. Built module for MS-Windows can be found here :file_folder:: [DOWNLOAD](jSumTTest_1.0.1.jmo)
 
 After installation you find the function named "Independent Samples Test for Summary Data" in tab "T-Tests" under the new sub-menu "Test for Summary Data [jSumTTest module]".
 
@@ -54,8 +56,12 @@ We encourage you to send bug reports, suggestions, questions, or any other comme
 
 # To-do's
 
-+ Add toggle switch to change between d-values
-+ Add options to fancy-up graph plot
++ README:
+  + Add details for the analytical process with used formulas
++ Module:  
+  + Add toggle switch to change between different formulas for Cohen's *d*
+  + Build module for macOS
+  + Add options to fancy-up graph plot
 
 # References
 Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed). L. Erlbaum Associates.
