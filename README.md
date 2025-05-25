@@ -45,7 +45,7 @@ Additionaly, the module plots:
 
 # Installing jSumTTest
 
-Currently only available via sideload. Build module for Windows can be found here :file_folder:: 
+Currently only available via sideload. Build module for Windows can be found here :file_folder:: [DOWNLOAD](jSumTTest_1.0.1.jmo)
 
 After installation you find the function as "Independent Samples Test for Summary Data" in tab "T-Tests" under the new sub-menu "Test for Summary Data [jSumTTest module]".
 
