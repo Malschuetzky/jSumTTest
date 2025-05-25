@@ -35,7 +35,7 @@ Additionaly, the module plots:
 
 These additional values and plots not only supports to comprehend the reported test results and their interpretation. They also help to cope with improper use of statistical tests, e.g., calculate additional Welch's instead of a reported Student's t-test as the authors should have done right from the start, or calculate missing effect sizes. They even help to identify fraudulent analyses, e.g., p-hacking where authors claim to use two-tailed test in the method section but report one-tailed p-values in the result section. Fascinatingly, mosty happens if their two-sided p-value is between .09 and .05...
 
-Users of psychologic tests can check the comparison of an observed group with the normative data of the used test or change the compared sub-group of the normative data.
+Users of psychologic tests can compare an observed group with the normative data of the used test as well as check reported comparisons and even change the compared sub-group of the normative data afterwards.
 
 # Installing jSumTTest
 
