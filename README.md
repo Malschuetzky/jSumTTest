@@ -9,8 +9,7 @@ Current version: 1.0.1
 + students
 + reviewers
 + researchers
-+ fellow psychologists &Psi; and higher ed researchers using quantitative methods
-+ all other stats-nerds... We salute you :vulcan_salute:
++ fellow psychologists &Psi; and higher ed researchers using quantitative methods as well as all other stats-nerds... We salute you :vulcan_salute:
 
 ## Potential applications
 Main application is to comprehend reported Student's and Welch's t-test without access to raw-data.
