@@ -54,19 +54,19 @@ Based on required group data in summarized form (sample size $n_i$, mean $M_i$, 
 + Calculate standard errors of group means (Eid et al., 2017, F 8.4b):\
 $$SE(M_i) = {SD_i \over \sqrt{n_i}}$$
 
-+ Calculate convidence intervals for group means (Eid et al., 2017, F 8.16):
-$$CI(M_i) = M_i \pm (Z(CI_{width}) * SE(M_i))$$
++ Calculate convidence intervals for group means (Eid et al., 2017, F 8.16):\
+$$CI(M_i) = M_i \pm (Z(CI_{width}) * SE(M_i))$$\
 using R function `qnorm()`to calculate $z$-value of user chosen CI-width `CI_width`
 	```
 	Z(CI_widht) = qnorm(CI_width)
 	```
 
 ## 3.2 Perform Welch's t-test
-+ Calculate Welch's $t$-value (Eid et al., 2017, eq. F 11.11):
-$$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$
-with mean-difference
-$$\Delta M = M_1 - M_2$$
-and Welch-corrected standard error of means-difference
++ Calculate Welch's $t$-value (Eid et al., 2017, eq. F 11.11):\
+$$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$\
+with mean-difference\
+$$\Delta M = M_1 - M_2$$\
+and Welch-corrected standard error of means-difference\
 $$SE_{Welch}(\Delta M) = \sqrt{{SD_1^2 \over n_1}+{SD_2^2 \over n_2}}$$
 
 + Calculate Welch-corrected degrees of freedom (Eid et al., 2017, eq. F 11.10):
