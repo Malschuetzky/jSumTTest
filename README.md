@@ -69,7 +69,7 @@ $$\Delta M = M_1 - M_2$$\
 and Welch-corrected standard error of means-difference\
 $$SE_{Welch}(\Delta M) = \sqrt{{SD_1^2 \over n_1}+{SD_2^2 \over n_2}}$$
 
-+ Calculate Welch-corrected degrees of freedom (Eid et al., 2017, eq. F 11.10):
++ Calculate Welch-corrected degrees of freedom (Eid et al., 2017, eq. F 11.10):\
 $$df_{Welch} ={{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over {{SD_1^4 \over (n_1^2)*(n_1-1)}+{SD_2^4 \over (n_2^2)*(n_2-1)}}}={{SE_{Welch}(\Delta M)^4} \over {{SD_1^4 \over (n_1^2)*(n_1-1)}+{SD_2^4 \over (n_2^2)*(n_2-1)}}}$$
 
 + Calculate $p_{Welch}$-value using R funtion `pt()` for
@@ -86,7 +86,7 @@ $$df_{Welch} ={{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over 
 		p_Welch <- pt(q=t_Welch, df=df_Welch, lower.tail=TRUE)
 		```
 
-+ Calculate effect size for unequal variances and equal group sizes (Cohen, 1988, eq. 2.2.1, 2.2.2 & 2.3.2):
++ Calculate effect size for unequal variances and equal group sizes (Cohen, 1988, eq. 2.2.1, 2.2.2 & 2.3.2):\
 $$d_{Welch} = {|\Delta M| \over \sqrt{ {SD_1^2 + SD_2^2 \over 2}}}$$
 
 + Calculate convidence interval for effect size $CI(d_{Welch})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
@@ -97,12 +97,12 @@ $$d_{Welch} = {|\Delta M| \over \sqrt{ {SD_1^2 + SD_2^2 \over 2}}}$$
 	 ````
 
 + Calculate convidence interval for mean-difference for
-	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a): 
-$$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
-	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):
-$$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$
-	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):
-$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$
+	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
+$$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$\
+	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
+$$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$\
+	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
+$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$\
 with calculting $t_{crit, one-tailed}$ using `qt()` R function qt():
 		```
 		t_crit_2tailed <- qt(CI_deltaM_width_2tailed,df_Welch)
