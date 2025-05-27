@@ -51,7 +51,7 @@ After installation you find the function named "Independent Samples Test for Sum
 Based on required group data in summarized form (sample size $n_i$, mean $M_i$, and standard deviation $SD_i$) for each of the two groups $i = [1; 2]$ to be compared, the module will calculate additional group descriptives, Welch's t-test, and Student's t-test. Optional, the groups can be named to for more transparent graph and tables in the output.
 
 ## 3.1 Calculate additional descriptives
-+ Calculate standard errors of group means (Eid et al., 2017, F 8.4b):
++ Calculate standard errors of group means (Eid et al., 2017, F 8.4b):\
 $$SE(M_i) = {SD_i \over \sqrt{n_i}}$$
 
 + Calculate convidence intervals for group means (Eid et al., 2017, F 8.16):
