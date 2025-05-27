@@ -63,10 +63,10 @@ using R function `qnorm()`to calculate $z$-value of user chosen CI-width `CI_wid
 
 ## 3.2 Perform Welch's t-test
 + Calculate Welch's $t$-value (Eid et al., 2017, eq. F 11.11):\
-$$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$\\
-with mean-difference\
-$$\Delta M = M_1 - M_2$$\\
-and Welch-corrected standard error of means-difference\
+$$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$\
+\with mean-difference\
+$$\Delta M = M_1 - M_2$$\
+\and Welch-corrected standard error of means-difference\
 $$SE_{Welch}(\Delta M) = \sqrt{{SD_1^2 \over n_1}+{SD_2^2 \over n_2}}$$
 
 + Calculate Welch-corrected degrees of freedom (Eid et al., 2017, eq. F 11.10):\
