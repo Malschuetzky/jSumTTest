@@ -64,9 +64,9 @@ using R function `qnorm()`to calculate $z$-value of user chosen CI-width `CI_wid
 ## 3.2 Perform Welch's t-test
 + Calculate Welch's $t$-value (Eid et al., 2017, eq. F 11.11):\
 $$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$\
-\with mean-difference\
+with mean-difference\
 $$\Delta M = M_1 - M_2$$\
-\and Welch-corrected standard error of means-difference\
+and Welch-corrected standard error of means-difference\
 $$SE_{Welch}(\Delta M) = \sqrt{{SD_1^2 \over n_1}+{SD_2^2 \over n_2}}$$
 
 + Calculate Welch-corrected degrees of freedom (Eid et al., 2017, eq. F 11.10):\
@@ -112,16 +112,16 @@ with calculting $t_{crit, one-tailed}$ using `qt()` R function qt():
 		 		  
 
 ## 3.3 Perform Student's t-test
-+ Calculate Student's $t$-value (Eid et al., 2017, eq. F 11.9c):
-$$t_{Student} = {\Delta M \over SE_{Stud}(\Delta M)}$$
-with mean-difference
-$$\Delta M = M_1 - M_2$$
-and standard error of means-difference (Eid et al., 2017, eq. F 11.7)
-$$SE_{Student}= \sqrt{{\sigma_{pooled}^2 \over n_1}+{\sigma_{pooled}^2 \over n_2}}$$
-with pooled variance (Eid et al., 2017, eq. F 11.8)
++ Calculate Student's $t$-value (Eid et al., 2017, eq. F 11.9c):\
+$$t_{Student} = {\Delta M \over SE_{Stud}(\Delta M)}$$\
+with mean-difference\
+$$\Delta M = M_1 - M_2$$\
+and standard error of means-difference (Eid et al., 2017, eq. F 11.7)\
+$$SE_{Student}= \sqrt{{\sigma_{pooled}^2 \over n_1}+{\sigma_{pooled}^2 \over n_2}}$$\
+with pooled variance (Eid et al., 2017, eq. F 11.8)\
 $$\sigma_{pooled}^2 = {SD_1^2*(n_1-1)+SD_2^2*(n_2-1) \over (n_1-1)+(n_2-1)}$$
 
-+ Calculate degrees of freedom (Eid et al., 2017, p. 334):
++ Calculate degrees of freedom (Eid et al., 2017, p. 334):\
 $$df_{Student} = (n_1-1)+(n_2-1)$$
 
 + Calculate $p_{Student}$-value using R funtion `pt()` for
@@ -138,7 +138,7 @@ $$df_{Student} = (n_1-1)+(n_2-1)$$
 		p_Student <- pt(q=t_Student, df=df_Student, lower.tail=TRUE)
 		```
 
-+ Calculate effect size for Student's t-Test (Eid et al., 2017, eq. F 11.13b & Cohen, 1988, eq. 2.2.2):
++ Calculate effect size for Student's t-Test (Eid et al., 2017, eq. F 11.13b & Cohen, 1988, eq. 2.2.2):\
 $$d_{Student} = \left|{\Delta M \over \sqrt{\sigma_{pooled}^2}} \right| = \left|{\Delta M \over \sigma_{pooled}}\right|$$
 
 + Calculate convidence interval for effect size $CI(d_{Student})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
@@ -149,12 +149,12 @@ $$d_{Student} = \left|{\Delta M \over \sqrt{\sigma_{pooled}^2}} \right| = \left|
 	 ````
 
 + Calculate convidence interval for mean-difference for
-	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a): 
-$$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$
-	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):
-$$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$
-	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):
-$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$
+	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
+$$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$\
+	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
+$$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$\
+	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
+$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$\
 with calculting $t_{crit, one-tailed}$ using `qt()` R function qt():
 		```
 		t_crit_2tailed <- qt(CI_deltaM_width_2tailed,df_Student)
