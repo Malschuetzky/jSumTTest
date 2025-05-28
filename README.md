@@ -11,7 +11,7 @@ A [jamovi](https://www.jamovi.org/) module to calculate Student's and Welch's t-
 + students
 + reviewers
 + researchers
-+ fellow psychologists &Psi; and higher ed researchers :mortar_board: using quantitative methods as well as all other stats-nerds...
++ especially fellow psychologists &Psi; and higher ed researchers :mortar_board: using quantitative methods as well as all other stats-nerds...
 
 We salute you :vulcan_salute:
 
@@ -51,11 +51,12 @@ After installation you find the function named "Independent Samples Test for Sum
 Based on required group data in summarized form (sample size $n_i$, mean $M_i$, and standard deviation $SD_i$) for each of the two groups $i = [1; 2]$ to be compared, the module will calculate additional group descriptives, Welch's t-test, and Student's t-test. Optional, the groups can be named to for more transparent graph and tables in the output.
 
 ## 3.1 Calculate additional descriptives
-+ Calculate standard errors of group means (Eid et al., 2017, F 8.4b):\
++ Calculate standard errors of group means (Eid et al., 2017, F 8.4b): \
 $$SE(M_i) = {SD_i \over \sqrt{n_i}}$$
 
-+ Calculate convidence intervals for group means (Eid et al., 2017, F 8.16):\
-$$CI(M_i) = M_i \pm (Z(CI_{width}) * SE(M_i))$$\
++ Calculate convidence intervals for group means (Eid et al., 2017, F 8.16): \
+$$CI(M_i) = M_i \pm (Z(CI_{width}) * SE(M_i))$$
+\
 using R function `qnorm()`to calculate $z$-value of user chosen CI-width `CI_width`
 	```
 	Z(CI_widht) = qnorm(CI_width)
