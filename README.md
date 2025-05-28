@@ -58,12 +58,12 @@ $$SE(M_i) = {SD_i \over \sqrt{n_i}}$$
 $$CI(M_i) = M_i \pm (Z(CI_{width}) * SE(M_i))$$ \
 using R function `qnorm()`to calculate $z$-value of user chosen CI-width `CI_width`
 	```
-	Z(CI_widht) = qnorm(CI_width)
+	z(CI_widht) = qnorm(CI_width)
 	```
 
 ## 3.2 Perform Welch's t-test
 + Calculate Welch's $t$-value (Eid et al., 2017, eq. F 11.11):\
-$$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$
+$$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$ \
 with mean-difference\
 $$\Delta M = M_1 - M_2$$
 and Welch-corrected standard error of means-difference\
@@ -102,8 +102,8 @@ $$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
 $$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$
-with calculting $t_{crit, one-tailed}$ using R function `qt()`:
+$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$ \
+with calculting $t_{crit, one/two-tailed}$ using R function `qt()`:
 		```
 		t_crit_2tailed <- qt(CI_deltaM_width_2tailed,df_Welch)
 		t_crit_1tailed <- qt(CI_deltaM_width_1tailed,df_Welch)
@@ -113,11 +113,11 @@ with calculting $t_{crit, one-tailed}$ using R function `qt()`:
 
 ## 3.3 Perform Student's t-test
 + Calculate Student's $t$-value (Eid et al., 2017, eq. F 11.9c):\
-$$t_{Student} = {\Delta M \over SE_{Stud}(\Delta M)}$$
+$$t_{Student} = {\Delta M \over SE_{Stud}(\Delta M)}$$ \
 with mean-difference\
-$$\Delta M = M_1 - M_2$$
+$$\Delta M = M_1 - M_2$$ \
 and standard error of means-difference (Eid et al., 2017, eq. F 11.7)\
-$$SE_{Student}= \sqrt{{\sigma_{pooled}^2 \over n_1}+{\sigma_{pooled}^2 \over n_2}}$$
+$$SE_{Student}= \sqrt{{\sigma_{pooled}^2 \over n_1}+{\sigma_{pooled}^2 \over n_2}}$$ \
 with pooled variance (Eid et al., 2017, eq. F 11.8)\
 $$\sigma_{pooled}^2 = {SD_1^2*(n_1-1)+SD_2^2*(n_2-1) \over (n_1-1)+(n_2-1)}$$
 
@@ -154,8 +154,8 @@ $$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
 $$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$
-with calculting $t_{crit, one-tailed}$ using R function `qt()`:
+$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$ \
+with calculting $t_{crit, one/two-tailed}$ using R function `qt()`:
 		```
 		t_crit_2tailed <- qt(CI_deltaM_width_2tailed,df_Student)
 		t_crit_1tailed <- qt(CI_deltaM_width_1tailed,df_Student)
