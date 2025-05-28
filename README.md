@@ -65,12 +65,12 @@ using R function `qnorm()`to calculate $z$-value of user chosen CI-width `CI_wid
 + Calculate Welch's $t$-value (Eid et al., 2017, eq. F 11.11):\
 $$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$ \
 with mean-difference\
-$$\Delta M = M_1 - M_2$$
+$$\Delta M = M_1 - M_2$$ \
 and Welch-corrected standard error of means-difference\
 $$SE_{Welch}(\Delta M) = \sqrt{{SD_1^2 \over n_1}+{SD_2^2 \over n_2}}$$
 
 + Calculate Welch-corrected degrees of freedom (Eid et al., 2017, eq. F 11.10):\
-$$df_{Welch} = {{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over {{SD_1^4 \over n_1^2*(n_1-1)} + {SD_2^4 \over n_2^2*(n_2-1)}}} = {{SE_{Welch}(\Delta M)^4} \over {{SD_1^4 \over n_1^2*(n_1-1)} + {SD_2^4 \over n_2^2*(n_2-1)}}}$$ \
+$$df_{Welch} = {{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over {{SD_1^4 \over n_1^2*(n_1-1)} + {SD_2^4 \over n_2^2*(n_2-1)}}} = {{SE_{Welch}(\Delta M)^4} \over {{SD_1^4 \over n_1^2*(n_1-1)} + {SD_2^4 \over n_2^2*(n_2-1)}}}$$
 
 + Calculate $p_{Welch}$-value using R funtion `pt()` for
 	+ two-tailed hypothesis:
@@ -103,12 +103,12 @@ $$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
 $$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
 $$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$ \
-with calculting $t_{crit, one/two-tailed}$ using R function `qt()`:
+with calculting $df_{Welch}$ critical $t_crit$-value using R function `qt()`:
 		```
 		t_crit_2tailed <- qt(CI_deltaM_width_2tailed,df_Welch)
 		t_crit_1tailed <- qt(CI_deltaM_width_1tailed,df_Welch)
 		```
-		using user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis.
+		and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis.
 		 		  
 
 ## 3.3 Perform Student's t-test
@@ -118,7 +118,7 @@ with mean-difference\
 $$\Delta M = M_1 - M_2$$ \
 and standard error of means-difference (Eid et al., 2017, eq. F 11.7)\
 $$SE_{Student}= \sqrt{{\sigma_{pooled}^2 \over n_1}+{\sigma_{pooled}^2 \over n_2}}$$ \
-with pooled variance (Eid et al., 2017, eq. F 11.8)\
+using pooled variance (Eid et al., 2017, eq. F 11.8)\
 $$\sigma_{pooled}^2 = {SD_1^2*(n_1-1)+SD_2^2*(n_2-1) \over (n_1-1)+(n_2-1)}$$
 
 + Calculate degrees of freedom (Eid et al., 2017, p. 334):\
