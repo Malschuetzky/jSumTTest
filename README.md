@@ -103,7 +103,7 @@ $$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
 $$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
 $$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$ \
-with calculting $df_{Welch}$ related one- and two-tailed critical $t_{{(crit,Welch)}$-value using R function `qt()`:
+with calculting $df_{Welch}$ related one- and two-tailed critical $t_{(crit,Welch)}$-value using R function `qt()`:
 		```
 		t_crit_2tailed_Welch <- qt(CI_deltaM_width_2tailed,df_Welch)
 		t_crit_1tailed_Welch <- qt(CI_deltaM_width_1tailed,df_Welch)
@@ -155,7 +155,7 @@ $$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$
 $$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
 $$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$ \
-with calculting $df_{Student}$ related one- and two-tailed critical $t_{{(crit,Student)}$-value using R function `qt()`:
+with calculting $df_{Student}$ related one- and two-tailed critical $t_{(crit,Student)}$-value using R function `qt()`:
 		```
 		t_crit_2tailed_Student <- qt(CI_deltaM_width_2tailed,df_Student)
 		t_crit_1tailed_Student <- qt(CI_deltaM_width_1tailed,df_Student)
