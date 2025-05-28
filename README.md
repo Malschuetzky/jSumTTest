@@ -56,7 +56,7 @@ $$SE(M_i) = {SD_i \over \sqrt{n_i}}$$
 
 + Calculate convidence intervals for group means (Eid et al., 2017, F 8.16): \
 $$CI(M_i) = M_i \pm (Z(CI_{width}) * SE(M_i))$$
-\
+<br/>
 using R function `qnorm()`to calculate $z$-value of user chosen CI-width `CI_width`
 	```
 	Z(CI_widht) = qnorm(CI_width)
