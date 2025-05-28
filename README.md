@@ -20,7 +20,7 @@ Main application is to comprehend reported Student's and Welch's t-test without 
 
 By using reported group descriptives (mean ($M$), standard deviation ($SD$), and sample size ($n$) the module calculates:
 + Additional group descriptives:
-  + Standard errors of group means ($SE(M)$)
+  + Standard errors of group means $SE(M)$
   + Convidence intervals for group means ($CI(M)$) of any witdh of your choice between 50 to 99.9% (default set to 95%)
 + One- and two-tailed test satistics for Student's and Welch's t-tests:
   + $t$-value
