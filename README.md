@@ -18,19 +18,19 @@ We salute you :vulcan_salute:
 ## 1.2 Potential applications
 Main application is to comprehend reported Student's and Welch's t-test without access to raw-data.
 
-By using reported group descriptives (mean ($M$), standard deviation ($SD$), and sample size ($n$) the module calculates:
+By using reported groups' descriptives (mean $M$, standard deviation $SD$, and sample size $n$) the module calculates:
 + Additional group descriptives:
   + Standard errors of group means $SE(M)$
-  + Convidence intervals for group means ($CI(M)$) of any witdh of your choice between 50 to 99.9% (default set to 95%)
+  + Convidence intervals for group means $CI(M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
 + One- and two-tailed test satistics for Student's and Welch's t-tests:
   + $t$-value
   + $df$
   + $p$-value
   + Cohen's $d$
-  + Convidence interval for Cohen's $d$ ($CI(d)$) of any witdh of your choice between 50 to 99.9% (default set to 95%)
-  + Mean-difference ($\Delta M$)
-  + Standard error of mean-difference ($SE(\Delta M)$)
-  + Convidence interval for mean-difference ($CI(\Delta M)$) of any witdh of your choice between 50 to 99.9% (default set to 95%)
+  + Convidence interval for Cohen's $d$, $CI(d)$, of any witdh of your choice between 50 to 99.9% (default set to 95%)
+  + Mean-difference $\Delta M$
+  + Standard error of mean-difference $SE(\Delta M)$
+  + Convidence interval for mean-difference $CI(\Delta M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
   
 Additionaly, the module plots:
 + Mean and related CI for each group in one graph
@@ -98,11 +98,11 @@ $$d_{Welch} = {|\Delta M| \over \sqrt{ {SD_1^2 + SD_2^2 \over 2}}}$$
 
 + Calculate convidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
-$$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$\
+$$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
-$$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$\
+$$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$\
+$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$
 with calculting $t_{crit, one-tailed}$ using R function `qt()`:
 		```
 		t_crit_2tailed <- qt(CI_deltaM_width_2tailed,df_Welch)
@@ -113,11 +113,11 @@ with calculting $t_{crit, one-tailed}$ using R function `qt()`:
 
 ## 3.3 Perform Student's t-test
 + Calculate Student's $t$-value (Eid et al., 2017, eq. F 11.9c):\
-$$t_{Student} = {\Delta M \over SE_{Stud}(\Delta M)}$$\
+$$t_{Student} = {\Delta M \over SE_{Stud}(\Delta M)}$$
 with mean-difference\
-$$\Delta M = M_1 - M_2$$\
+$$\Delta M = M_1 - M_2$$
 and standard error of means-difference (Eid et al., 2017, eq. F 11.7)\
-$$SE_{Student}= \sqrt{{\sigma_{pooled}^2 \over n_1}+{\sigma_{pooled}^2 \over n_2}}$$\
+$$SE_{Student}= \sqrt{{\sigma_{pooled}^2 \over n_1}+{\sigma_{pooled}^2 \over n_2}}$$
 with pooled variance (Eid et al., 2017, eq. F 11.8)\
 $$\sigma_{pooled}^2 = {SD_1^2*(n_1-1)+SD_2^2*(n_2-1) \over (n_1-1)+(n_2-1)}$$
 
@@ -150,11 +150,11 @@ $$d_{Student} = \left|{\Delta M \over \sqrt{\sigma_{pooled}^2}} \right| = \left|
 
 + Calculate convidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
-$$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$\
+$$CI(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
-$$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$\
+$$CI(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$\
+$$CI(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$
 with calculting $t_{crit, one-tailed}$ using R function `qt()`:
 		```
 		t_crit_2tailed <- qt(CI_deltaM_width_2tailed,df_Student)
