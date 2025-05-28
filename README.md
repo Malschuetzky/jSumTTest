@@ -70,7 +70,8 @@ and Welch-corrected standard error of means-difference\
 $$SE_{Welch}(\Delta M) = \sqrt{{SD_1^2 \over n_1}+{SD_2^2 \over n_2}}$$
 
 + Calculate Welch-corrected degrees of freedom (Eid et al., 2017, eq. F 11.10):\
-$$df_{Welch} ={{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over {{SD_1^4 \over (n_1^2)*(n_1-1)}+{SD_2^4 \over (n_2^2)*(n_2-1)}}}={{SE_{Welch}(\Delta M)^4} \over {{SD_1^4 \over (n_1^2)*(n_1-1)}+{SD_2^4 \over (n_2^2)*(n_2-1)}}}$$
+$$df_{Welch} = {{SE_{Welch}(\Delta M)^4} \over {{SD_1^4 \over (n_1^2)*(n_1-1)}+{SD_2^4 \over (n_2^2)*(n_2-1)}}}$$
+$$df_{Welch} = {{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over {{SD_1^4 \over (n_1^2)*(n_1-1)}+{SD_2^4 \over (n_2^2)*(n_2-1)}}} = {{SE_{Welch}(\Delta M)^4} \over {{SD_1^4 \over (n_1^2)*(n_1-1)}+{SD_2^4 \over (n_2^2)*(n_2-1)}}}$$
 
 + Calculate $p_{Welch}$-value using R funtion `pt()` for
 	+ two-tailed hypothesis:
@@ -169,7 +170,7 @@ We encourage you to send bug reports, suggestions, questions, or any other comme
 # 5. To-do's
 
 + Module:  
-  + Code cleaning
+  + R code cleaning
   + Add toggle switch to change between different formulas for Cohen's $d$
   + Build module for macOS
   + Add options to fancy-up graph plot
