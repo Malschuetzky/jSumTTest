@@ -46,6 +46,8 @@ Currently only available via sideload. Built module for MS-Windows can be found 
 
 After installation you find the function named "Independent Samples Test for Summary Data" in tab "T-Tests" under the new sub-menu "Test for Summary Data [jSumTTest module]".
 
+![Screenshot of the menu-path](readme_pics/readme_menu.png)
+
 # 3. Analytical process
 
 Based on required group data in summarized form (sample size $n_i$, mean $M_i$, and standard deviation $SD_i$) for each of the two groups $i = [1; 2]$ to be compared, the module will calculate additional group descriptives, Welch's t-test, and Student's t-test. Optional, the groups can be named to for more transparent graph and tables in the output.
