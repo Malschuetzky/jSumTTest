@@ -166,12 +166,8 @@ with calculting $df_{Student}$ related one- and two-tailed critical $t_{(crit,St
 We encourage you to send bug reports, suggestions, questions, or any other comment you want us to know.
 
 # 5. To-do's
-
-+ Module:  
-  + R code cleaning
-  + Add toggle switch to change between different formulas for Cohen's $d$
-  + Build module for macOS
-  + Add options to fancy-up graph plot
++ Build module for macOS
++ Add options to fancy-up graph plot
 
 # References
 Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed). L. Erlbaum Associates.
