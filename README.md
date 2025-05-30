@@ -98,11 +98,11 @@ $$d_{Welch} = {|\Delta M| \over \sqrt{ {SD_1^2 + SD_2^2 \over 2}}}$$
 
 + Calculate convidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
-$$CI_Welch(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
+$$CI_{Welch}(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
-$$CI_Welch(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$
+$$CI_{Welch}(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI_Welch(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$ \
+$$CI_{Welch}(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$ \
 with calculting $df_{Welch}$ related one- and two-tailed critical $t_{(crit,Welch)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
 		```
 		t_crit_2tailed_Welch <- qt(CI_deltaM_width_2tailed,df_Welch)
@@ -149,11 +149,11 @@ $$d_{Student} = \left|{\Delta M \over \sqrt{\sigma_{pooled}^2}} \right| = \left|
 
 + Calculate convidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
-$$CI_Student(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$
+$$CI_{Student}(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
-$$CI_Student(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$
+$$CI_{Student}(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI_Student(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$ \
+$$CI_{Student}(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$ \
 with calculting $df_{Student}$ related one- and two-tailed critical $t_{(crit,Student)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
 		```
 		t_crit_2tailed_Student <- qt(CI_deltaM_width_2tailed,df_Student)
