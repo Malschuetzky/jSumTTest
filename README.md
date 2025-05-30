@@ -138,7 +138,7 @@ $$df_{Student} = (n_1-1)+(n_2-1)$$
 		```
 
 + Calculate effect size for Student's t-Test (Eid et al., 2017, eq. F 11.13b & Cohen, 1988, eq. 2.2.2):\
-$$d_{Student} = |\Delta M| \over \sqrt{\sigma_{pooled}^2} = |\Delta M| \over \sigma_{pooled}$$
+$$d_{Student} = {|\Delta M| \over \sqrt{\sigma_{pooled}^2}} = {|\Delta M| \over \sigma_{pooled}}$$
 
 + Calculate convidence interval for effect size $CI(d_{Student})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
 	````
