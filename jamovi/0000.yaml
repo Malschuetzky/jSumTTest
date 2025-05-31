@@ -1,17 +1,18 @@
 ---
 title: Independent Samples Test for Summary Data
 name: jSumTTest
-version: 1.0.1
+version: 1.1.0
 jms: '1.0'
 authors:
   - Michael M. Malschützky
 maintainer: Michael M. Malschützky <michael.malschuetzky@h-brs.de>
-date: '2024-08-27'
+date: '2025-05-31'
 type: R
 description: >-
-  Calculate Student's and Welch's t-Test (including related Cohen's d) based on
-  summary data (mean, standard deviation, and sample size), to comprehend
-  reported tests.
+  Calculate Student's and Welch's t-Test (including related Cohen's <i>d</i>)
+  based on summary data (mean, standard deviation, and sample size), to
+  comprehend reported tests. Details can be found on <a
+  href="https://github.com/Malschuetzky/jSumTTest" target="_blank">GitHub</a>.
 analyses:
   - title: Independent Samples Test for Summary Data
     name: jSumTTest
@@ -19,6 +20,7 @@ analyses:
     menuGroup: T-Tests
     menuTitle: Independent Samples Test for Summary Data
     menuSubgroup: Test for Summary Data [jSumTTest module]
+    category: analyses
 usesNative: true
 minApp: 1.0.8
 

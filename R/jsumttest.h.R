@@ -18,10 +18,10 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             d_show = TRUE,
             CI_d_show = FALSE,
             CI_d_width = 95,
-            Mdiff_show = TRUE,
-            SEdiff_show = FALSE,
-            CI_show = FALSE,
-            CIdiff_width = 95,
+            deltaM_show = TRUE,
+            SE_deltaM_show = FALSE,
+            CI_deltaM_show = FALSE,
+            CI_deltaM_width = 95,
             desc_show = TRUE,
             SE_M_show = TRUE,
             CI_M_show = TRUE,
@@ -88,21 +88,21 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 min=50,
                 max=99.9,
                 default=95)
-            private$..Mdiff_show <- jmvcore::OptionBool$new(
-                "Mdiff_show",
-                Mdiff_show,
+            private$..deltaM_show <- jmvcore::OptionBool$new(
+                "deltaM_show",
+                deltaM_show,
                 default=TRUE)
-            private$..SEdiff_show <- jmvcore::OptionBool$new(
-                "SEdiff_show",
-                SEdiff_show,
+            private$..SE_deltaM_show <- jmvcore::OptionBool$new(
+                "SE_deltaM_show",
+                SE_deltaM_show,
                 default=FALSE)
-            private$..CI_show <- jmvcore::OptionBool$new(
-                "CI_show",
-                CI_show,
+            private$..CI_deltaM_show <- jmvcore::OptionBool$new(
+                "CI_deltaM_show",
+                CI_deltaM_show,
                 default=FALSE)
-            private$..CIdiff_width <- jmvcore::OptionNumber$new(
-                "CIdiff_width",
-                CIdiff_width,
+            private$..CI_deltaM_width <- jmvcore::OptionNumber$new(
+                "CI_deltaM_width",
+                CI_deltaM_width,
                 min=50,
                 max=99.9,
                 default=95)
@@ -141,10 +141,10 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..d_show)
             self$.addOption(private$..CI_d_show)
             self$.addOption(private$..CI_d_width)
-            self$.addOption(private$..Mdiff_show)
-            self$.addOption(private$..SEdiff_show)
-            self$.addOption(private$..CI_show)
-            self$.addOption(private$..CIdiff_width)
+            self$.addOption(private$..deltaM_show)
+            self$.addOption(private$..SE_deltaM_show)
+            self$.addOption(private$..CI_deltaM_show)
+            self$.addOption(private$..CI_deltaM_width)
             self$.addOption(private$..desc_show)
             self$.addOption(private$..SE_M_show)
             self$.addOption(private$..CI_M_show)
@@ -164,10 +164,10 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         d_show = function() private$..d_show$value,
         CI_d_show = function() private$..CI_d_show$value,
         CI_d_width = function() private$..CI_d_width$value,
-        Mdiff_show = function() private$..Mdiff_show$value,
-        SEdiff_show = function() private$..SEdiff_show$value,
-        CI_show = function() private$..CI_show$value,
-        CIdiff_width = function() private$..CIdiff_width$value,
+        deltaM_show = function() private$..deltaM_show$value,
+        SE_deltaM_show = function() private$..SE_deltaM_show$value,
+        CI_deltaM_show = function() private$..CI_deltaM_show$value,
+        CI_deltaM_width = function() private$..CI_deltaM_width$value,
         desc_show = function() private$..desc_show$value,
         SE_M_show = function() private$..SE_M_show$value,
         CI_M_show = function() private$..CI_M_show$value,
@@ -186,10 +186,10 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..d_show = NA,
         ..CI_d_show = NA,
         ..CI_d_width = NA,
-        ..Mdiff_show = NA,
-        ..SEdiff_show = NA,
-        ..CI_show = NA,
-        ..CIdiff_width = NA,
+        ..deltaM_show = NA,
+        ..SE_deltaM_show = NA,
+        ..CI_deltaM_show = NA,
+        ..CI_deltaM_width = NA,
         ..desc_show = NA,
         ..SE_M_show = NA,
         ..CI_M_show = NA,
@@ -250,25 +250,25 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="number", 
                         `visible`="(d_show && CI_d_show)"),
                     list(
-                        `name`="Mdiff", 
+                        `name`="deltaM", 
                         `title`="<i>&Delta;M</i>", 
                         `type`="number", 
-                        `visible`="(Mdiff_show)"),
+                        `visible`="(deltaM_show)"),
                     list(
-                        `name`="SEdiff", 
-                        `title`="<i>SE(&Delta;M)</i>", 
+                        `name`="SE_deltaM", 
+                        `title`="<i>SE</i>(&Delta;<i>M</i>)", 
                         `type`="number", 
-                        `visible`="(Mdiff_show && SEdiff_show)"),
+                        `visible`="(deltaM_show && SE_deltaM_show)"),
                     list(
-                        `name`="CIlow", 
+                        `name`="CI_deltaM_low", 
                         `title`="Lower", 
                         `type`="number", 
-                        `visible`="(Mdiff_show && CI_show)"),
+                        `visible`="(deltaM_show && CI_deltaM_show)"),
                     list(
-                        `name`="CIupp", 
+                        `name`="CI_deltaM_upp", 
                         `title`="Upper", 
                         `type`="number", 
-                        `visible`="(Mdiff_show && CI_show)")),
+                        `visible`="(deltaM_show && CI_deltaM_show)")),
                 notes=list(
                     `1`="INI"),
                 refs=list(
@@ -299,7 +299,7 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="number"),
                     list(
                         `name`="SE", 
-                        `title`="<i>SE(M)</i>", 
+                        `title`="<i>SE</i>(<i>M</i>)", 
                         `type`="number", 
                         `visible`="(desc_show && SE_M_show)"),
                     list(
@@ -334,7 +334,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "jSumTTest",
                 name = "jSumTTest",
-                version = c(1,0,1),
+                version = c(1,1,0),
                 options = options,
                 results = jSumTTestResults$new(options=options),
                 data = data,
@@ -362,10 +362,10 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param d_show .
 #' @param CI_d_show .
 #' @param CI_d_width .
-#' @param Mdiff_show .
-#' @param SEdiff_show .
-#' @param CI_show .
-#' @param CIdiff_width .
+#' @param deltaM_show .
+#' @param SE_deltaM_show .
+#' @param CI_deltaM_show .
+#' @param CI_deltaM_width .
 #' @param desc_show .
 #' @param SE_M_show .
 #' @param CI_M_show .
@@ -398,10 +398,10 @@ jSumTTest <- function(
     d_show = TRUE,
     CI_d_show = FALSE,
     CI_d_width = 95,
-    Mdiff_show = TRUE,
-    SEdiff_show = FALSE,
-    CI_show = FALSE,
-    CIdiff_width = 95,
+    deltaM_show = TRUE,
+    SE_deltaM_show = FALSE,
+    CI_deltaM_show = FALSE,
+    CI_deltaM_width = 95,
     desc_show = TRUE,
     SE_M_show = TRUE,
     CI_M_show = TRUE,
@@ -425,10 +425,10 @@ jSumTTest <- function(
         d_show = d_show,
         CI_d_show = CI_d_show,
         CI_d_width = CI_d_width,
-        Mdiff_show = Mdiff_show,
-        SEdiff_show = SEdiff_show,
-        CI_show = CI_show,
-        CIdiff_width = CIdiff_width,
+        deltaM_show = deltaM_show,
+        SE_deltaM_show = SE_deltaM_show,
+        CI_deltaM_show = CI_deltaM_show,
+        CI_deltaM_width = CI_deltaM_width,
         desc_show = desc_show,
         SE_M_show = SE_M_show,
         CI_M_show = CI_M_show,

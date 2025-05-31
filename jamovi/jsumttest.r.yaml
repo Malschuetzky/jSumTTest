@@ -45,27 +45,27 @@ items:
           type: number
           visible: (d_show && CI_d_show)
           
-        - name: Mdiff
+        - name: deltaM
           title: <i>&Delta;M</i>
           type: number
-          visible: (Mdiff_show)
+          visible: (deltaM_show)
           
-        - name: SEdiff
-          title: <i>SE(&Delta;M)</i>
+        - name: SE_deltaM
+          title: <i>SE</i>(&Delta;<i>M</i>)
           type: number
-          visible: (Mdiff_show && SEdiff_show)
+          visible: (deltaM_show && SE_deltaM_show)
           
-        - name: CIlow
+        - name: CI_deltaM_low
           title: Lower
         #  superTitle: Convidence Interval
           type: number
-          visible: (Mdiff_show && CI_show)
+          visible: (deltaM_show && CI_deltaM_show)
 
-        - name: CIupp
+        - name: CI_deltaM_upp
           title: Upper
         #  superTitle: Convidence Interval
           type: number
-          visible: (Mdiff_show && CI_show)
+          visible: (deltaM_show && CI_deltaM_show)
       notes:
         1: INI
       refs:
@@ -96,7 +96,7 @@ items:
           type: number
           
         - name: SE
-          title: <i>SE(M)</i>
+          title: <i>SE</i>(<i>M</i>)
           type: number
           visible: (desc_show && SE_M_show)
           

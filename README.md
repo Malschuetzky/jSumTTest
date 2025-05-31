@@ -1,9 +1,9 @@
 # jSumTTest
-A [jamovi](https://www.jamovi.org/) module to calculate Student's and Welch's t-test (including related Cohen's $d$) based on summary data (mean, standard deviation, and sample size) for both groups, if raw-data are not available.
+A [jamovi](https://www.jamovi.org/) (The jamovi project, 2025) module to calculate Student's and Welch's t-test (including related Cohen's $d$) based on summary data (mean, standard deviation, and sample size) for both groups, if raw-data are not available.
 
-**Current version:** 1.0.1
+**Current version:** 1.1.0
 
-**Citation:** Malschützky, M. M. (2024). *jSumTTest: Independent Samples Test for Summary Data* (Version 1.0.1) [Jamovi module]. https://github.com/Malschuetzky/jSumTTest
+**Citation:** Malschützky, M. M. (2025). *jSumTTest: Independent Samples Test for Summary Data* (Version 1.1.0) [Jamovi module]. https://github.com/Malschuetzky/jSumTTest
 
 # 1 Intended use
 ## 1.1 Potential users
@@ -181,6 +181,8 @@ Kubinger, K. D., Rasch, D., & Moder, K. (2009). Zur Legende der Voraussetzungen 
 R Core Team. (2024). *R: A Language and Environment for Statistical Computing* (Version 4.4.1) [Computer Software]. R Foundation for Statistical Computing. https://www.R-project.org/
 
 Revelle, W. (2024). *psych: Procedures for Psychological, Psychometric, and Personality Research* (Version 2.4.6.26) [R package]. https://cran.r-project.org/web/packages/psych/index.html
+
+The jamovi project. (2025). *jamovi* (Version 2.6.44.0) [Computer Software]. https://www.jamovi.org
 
 Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D., & van den Brand, T. (2024). *ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics* (Version 3.5.1) [R package]. Posit, PBC. https://cran.r-project.org/package=ggplot2
 

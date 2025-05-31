@@ -5,21 +5,21 @@
     `jSumTTest`=list(
         `type`="software", 
         `author`="Malsch\u00FCtzky, M.", 
-        `year`=2024, 
+        `year`=2025, 
         `title`="jSumTTest: Independent Samples Test for Summary Data", 
-        `publisher`="(Version 1.0.1) [jamovi module]. Retrieved from https://github.com/Malschuetzky/jSumTTest", 
+        `publisher`="(Version 1.1.0) [jamovi module]. Retrieved from https://github.com/Malschuetzky/jSumTTest", 
         `url`="https://github.com/Malschuetzky/jSumTTest"), 
     `ggplot2`=list(
         `type`="software", 
         `author`="Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D. & van den Brand, T.", 
-        `year`=2024, 
+        `year`=2025, 
         `title`="ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics", 
-        `publisher`="(Version 3.5.1) [R package]. Retrieved from https://CRAN.R-project.org/package=ggplot2", 
+        `publisher`="(Version 3.5.2) [R package]. Retrieved from https://CRAN.R-project.org/package=ggplot2", 
         `url`="https://CRAN.R-project.org/package=ggplot2"), 
     `psych-R`=list(
         `type`="software", 
         `author`="Revelle, W.", 
-        `year`=2024, 
+        `year`=2025, 
         `title`="psych: Procedures for Psychological, Psychometric, and Personality Research", 
-        `publisher`="(Version 2.4.6.26) [R package]. Retrieved from https://cran.r-project.org/package=psych", 
+        `publisher`="(Version 2.5.3) [R package]. Retrieved from https://cran.r-project.org/package=psych", 
         `url`="https://cran.r-project.org/package=psych"))
