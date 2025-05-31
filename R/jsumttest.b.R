@@ -147,7 +147,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           		  
 		  # calculate Cohen's d effect size for SD1!=SD2 & n1=n2 (Cohen, 1988, eq. 2.2.1, 2.2.2 & 2.3.2)
           d_Welch <- abs(M_diff)/sqrt((SD1^2+SD2^2)/2)
-          # calculate Convidence Interval for Cohen's d (Revelle, 2024)
+          # calculate Convidence Interval for Cohen's d (Revelle, 2025)
           CI_d_Welch <- psych::d.ci(d_Welch, n1=n1, n2=n2, alpha=CI_d)	# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value
           CI_d_W_low <- CI_d_Welch[1]
           CI_d_W_upp <- CI_d_Welch[3]          
@@ -212,7 +212,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           # calculate Cohen's d effect size for Student's t-Test (Eid et al., 2017, eq. F 11.13b)
           #d_Stud <- t_Stud * sqrt((n1+n2)/(n1*n2))
           d_Stud <- abs(M_diff)/sqrt(var_pooled_Stud) # abs() to prevent negative d values (compared to Cohen, 1988, eq. 2.2.2)
-          # calculate Convidence Interval for Cohen's d (Revelle, 2024)
+          # calculate Convidence Interval for Cohen's d (Revelle, 2025)
           CI_d_Stud <- psych::d.ci(d_Stud, n1=n1, n2=n2, alpha=CI_d)		# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value          
           CI_d_S_low <- CI_d_Stud[1]
           CI_d_S_upp <- CI_d_Stud[3]  
@@ -330,6 +330,6 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 ### References ###
 # Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed). L. Erlbaum Associates.
 # Eid, M., Gollwitzer, M., & Schmitt, M. (2017). Statistik und Forschungsmethoden (5., korrigierte Auflage). Beltz.
-# R Core Team. (2024). R: A Language and Environment for Statistical Computing (Version 4.4.1) [Computer Software]. R Foundation for Statistical Computing. https://www.R-project.org/
-# Revelle, W. (2024). psych: Procedures for Psychological, Psychometric, and Personality Research (Version 2.4.6.26) [R package]. https://cran.r-project.org/web/packages/psych/index.html
-# Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D., & van den Brand, T. (2024). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.5.1) [R package]. Posit, PBC. https://cran.r-project.org/package=ggplot2
+# R Core Team. (2025). R: A Language and Environment for Statistical Computing (Version 4.5.0) [Computer Software]. R Foundation for Statistical Computing. https://www.R-project.org/
+# Revelle, W. (2025). psych: Procedures for Psychological, Psychometric, and Personality Research (Version 2.5.3) [R package]. https://cran.r-project.org/web/packages/psych/index.html
+# Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D., & van den Brand, T. (2025). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.5.2) [R package]. Posit, PBC. https://cran.r-project.org/package=ggplot2
