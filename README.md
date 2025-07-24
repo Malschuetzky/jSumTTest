@@ -1,9 +1,9 @@
 # jSumTTest
 A [jamovi](https://www.jamovi.org/) (The jamovi project, 2025) module to calculate Student's and Welch's t-test (including related Cohen's $d$) based on summary data (mean, standard deviation, and sample size) for both groups, if raw-data are not available.
 
-**Current version:** 1.1.0
+**Current version:** 1.2.0
 
-**Citation:** Malschützky, M. M. (2025). *jSumTTest: Independent Samples Test for Summary Data* (Version 1.1.0) [Jamovi module]. https://github.com/Malschuetzky/jSumTTest
+**Citation:** Malschützky, M. M. (2025). *jSumTTest: Independent Samples Test for Summary Data* (Version 1.2.0) [Jamovi module]. https://github.com/Malschuetzky/jSumTTest
 
 # 1 Intended use
 ## 1.1 Potential users
@@ -42,7 +42,7 @@ Users of psychometric tests can compare an observed group with the normative dat
 
 # 2. Installing jSumTTest
 
-Currently only available via sideload. Built module for MS-Windows can be found here :file_folder:: [DOWNLOAD](built_module/Win/jSumTTest_1.0.1.jmo)
+Currently only available via sideload. Built module for MS-Windows can be found here :file_folder:: [DOWNLOAD](built_module/Win/jSumTTest_1.2.0.jmo)
 
 After installation you find the function named "Independent Samples Test for Summary Data" in tab "T-Tests" under the new sub-menu "Test for Summary Data [jSumTTest module]".
 

@@ -7,7 +7,7 @@
         `author`="Malsch\u00FCtzky, M.", 
         `year`=2025, 
         `title`="jSumTTest: Independent Samples Test for Summary Data", 
-        `publisher`="(Version 1.1.0) [jamovi module]. Retrieved from https://github.com/Malschuetzky/jSumTTest", 
+        `publisher`="(Version 1.2.0) [jamovi module]. Retrieved from https://github.com/Malschuetzky/jSumTTest", 
         `url`="https://github.com/Malschuetzky/jSumTTest"), 
     `ggplot2`=list(
         `type`="software", 

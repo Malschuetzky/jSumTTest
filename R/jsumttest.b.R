@@ -4,7 +4,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     private = list(
         .run = function() {
           
-          # VERSION 1.1.0 - 2025-05-31
+          # VERSION 1.2.0 - 2025-07-24
           
           
           
@@ -57,8 +57,6 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           table_tests <- self$results$ttesttable # test-values
           table_descriptives <- self$results$desctable	# descriptives values
           
-          hypo_text <- 'INI2' #footnote for table_tests
-          
 
           
           ### Descriptives ###
@@ -90,12 +88,8 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           descs <- rbind(desc_group1,desc_group2)
           
           ## print descriptives as table
-          # prepare CI SuperTitle
-          CI_M_h <- jmvcore::format('{} % CI(<i>M</i>)', CI_M_W_GUI)
-          table_descriptives$getColumn('CI_M_low')$setSuperTitle(CI_M_h)
-          table_descriptives$getColumn('CI_M_upp')$setSuperTitle(CI_M_h)          
-# print table 
 # table_descriptives$setVisible(visible=desc_tab_show)
+          
           table_descriptives$setRow(rowNo=1, values=list(
             group=G1_name,
             n=descs[1,1],
@@ -130,19 +124,16 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 	        df_Welch <- (SE_Welch^4)/((SD1^4/((n1^2)*(n1-1)))+(SD2^4/((n2^2)*(n2-1))))
 	  
           
-          # p-table readout and footnote setting based on hypothesis
+          # p-table readout based on hypothesis
           if (hypo_tail == 'notequal') {
             # two-tailed test (M1 != M2), abs(t_Welch) otherwise p greater 1 possible
             p_Welch <- 2*pt(q=abs(t_Welch), df=df_Welch, lower.tail=FALSE)	# pt(): basic R-function
-            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> &#8800 μ<sub>2</sub>'
           } else if (hypo_tail == 'onegreater') {
             # one-tailed test (M1 > M2)
             p_Welch <- pt(q=t_Welch, df=df_Welch, lower.tail=FALSE)
-            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> > μ<sub>2</sub>'
           } else {
             # one-tailed test (M1 < M2)
             p_Welch <- pt(q=t_Welch, df=df_Welch, lower.tail=TRUE)
-            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> < μ<sub>2</sub>'
           }
           		  
 		  # calculate Cohen's d effect size for SD1!=SD2 & n1=n2 (Cohen, 1988, eq. 2.2.1, 2.2.2 & 2.3.2)
@@ -261,18 +252,6 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           
           ## print t-tests results as table
           
-          # prepare CI(d) SuperTitle
-          CI_d_h <- jmvcore::format('{} % CI(<i>d</i>)', CI_d_GUI)
-          table_tests$getColumn('CI_d_low')$setSuperTitle(CI_d_h)
-          table_tests$getColumn('CI_d_upp')$setSuperTitle(CI_d_h)
-          
-          # prepare CI(mean difference) SuperTitle
-          CI_deltaM_h <- jmvcore::format('{} % CI(&Delta;<i>M</i>)', CI_deltaM_W_GUI)
-          table_tests$getColumn('CI_deltaM_low')$setSuperTitle(CI_deltaM_h)
-          table_tests$getColumn('CI_deltaM_upp')$setSuperTitle(CI_deltaM_h)
-
-          # print table
-          table_tests$setNote('1',hypo_text, init=TRUE)
           table_tests$setRow(rowNo=1, values=list(
             var='Welch&rsquo;s',
             t=results[1,1],
@@ -308,11 +287,54 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           image <- self$results$plot
           image$setState(plotData)
           
-          # set plot title
+        },
+
+
+        .init=function() {
+          
+          CI_M_W_GUI <- self$options$CI_M_width
+          
+          ## set SuperTitle for both tables
+          table_tests <- self$results$ttesttable # test-values
+          table_descriptives <- self$results$desctable	# descriptives values
+          
+          # prepare CI(M) SuperTitle
+          CI_M_h <- jmvcore::format('{} % <i>CI</i>(<i>M</i>)', CI_M_W_GUI)
+          table_descriptives$getColumn('CI_M_low')$setSuperTitle(CI_M_h)
+          table_descriptives$getColumn('CI_M_upp')$setSuperTitle(CI_M_h)          
+          
+          # prepare CI(d) SuperTitle
+          CI_d_h <- jmvcore::format('{} % <i>CI</i>(<i>d</i>)', self$options$CI_d_width)
+          table_tests$getColumn('CI_d_low')$setSuperTitle(CI_d_h)
+          table_tests$getColumn('CI_d_upp')$setSuperTitle(CI_d_h)
+          
+          # prepare CI(mean difference) SuperTitle
+          CI_deltaM_h <- jmvcore::format('{} % <i>CI</i>(&Delta;<i>M</i>)', self$options$CI_deltaM_width)
+          table_tests$getColumn('CI_deltaM_low')$setSuperTitle(CI_deltaM_h)
+          table_tests$getColumn('CI_deltaM_upp')$setSuperTitle(CI_deltaM_h)
+          
+          
+          ## set test-table footnote based on hypothesis
+          hypo_tail <- self$options$hypo
+          
+          if (hypo_tail == 'notequal') {
+            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> &#8800 μ<sub>2</sub>'   # two-tailed test (M1 != M2)
+          } else if (hypo_tail == 'onegreater') {
+            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> > μ<sub>2</sub>'  # one-tailed test (M1 > M2)
+          } else {
+            hypo_text <- '<i>H<sub>A</sub></i>: μ<sub>1</sub> < μ<sub>2</sub>'    # one-tailed test (M1 < M2)
+          }
+          
+          table_tests$setNote('1',hypo_text, init=TRUE)
+          
+          
+          ## set plot title
+          image <- self$results$plot
           plot_h <- jmvcore::format('Descriptives Plot (mean and {} % CI)', CI_M_W_GUI)
           image$setTitle(plot_h)
           
         },
+  
 
         .plot=function(image, ...) {
           plotData <- image$state

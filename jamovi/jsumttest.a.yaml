@@ -1,9 +1,9 @@
 ---
 name:  jSumTTest
-title: Independent Samples Test for Summary Data
+title: Summary Data
 menuGroup: T-Tests #jSumTTest
-menuSubgroup: Test for Summary Data [jSumTTest module]
-version: '1.1.0'
+menuSubgroup: jSumTTest
+version: '1.2.0'
 jas: '1.2'
 
 options:
@@ -75,7 +75,7 @@ options:
       
     - name: CI_d_show
       type: Bool
-      title: Convidence Interval of effect size (CI(<i>d</i>))
+      title: Convidence Interval of effect size (<i>CI</i>(<i>d</i>))
       default: false      
 
     - name: CI_d_width
@@ -83,7 +83,7 @@ options:
       title: INI
       min: 50
       max: 99.9
-      default: 95
+      default: 90
 
     - name: deltaM_show
       type: Bool
@@ -92,12 +92,12 @@ options:
 
     - name: SE_deltaM_show
       type: Bool
-      title: Standard errof of mean difference (SE(&Delta;<i>M</i>))
+      title: Standard errof of mean difference (<i>SE</i>(&Delta;<i>M</i>))
       default: false       
       
     - name: CI_deltaM_show
       type: Bool
-      title: Confidence Interval of mean difference (CI(&Delta;<i>M</i>))
+      title: Confidence Interval of mean difference (<i>CI</i>(&Delta;<i>M</i>))
       default: false
       
     - name: CI_deltaM_width
@@ -116,12 +116,12 @@ options:
       
     - name: SE_M_show
       type: Bool
-      title: Standard error of mean (SE(<i>M</i>))
+      title: Standard error of mean (<i>SE</i>(<i>M</i>))
       default: true      
       
     - name: CI_M_show
       type: Bool
-      title: Convidence Interval of mean (CI(<i>M</i>))
+      title: Convidence Interval of mean (<i>CI</i>(<i>M</i>))
       default: true      
 
     - name: CI_M_width

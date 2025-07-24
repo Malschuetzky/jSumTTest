@@ -17,7 +17,7 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             hypo = "notequal",
             d_show = TRUE,
             CI_d_show = FALSE,
-            CI_d_width = 95,
+            CI_d_width = 90,
             deltaM_show = TRUE,
             SE_deltaM_show = FALSE,
             CI_deltaM_show = FALSE,
@@ -87,7 +87,7 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 CI_d_width,
                 min=50,
                 max=99.9,
-                default=95)
+                default=90)
             private$..deltaM_show <- jmvcore::OptionBool$new(
                 "deltaM_show",
                 deltaM_show,
@@ -210,12 +210,19 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 options=options,
                 name="",
-                title="Independent Samples Test for Summary Data")
+                title="Summary Data")
             self$add(jmvcore::Table$new(
                 options=options,
                 name="ttesttable",
                 title="Independent Samples Test for Summary Data",
                 rows=2,
+                clearWith=list(
+                    "M1",
+                    "SD1",
+                    "n1",
+                    "M2",
+                    "SD2",
+                    "n2"),
                 columns=list(
                     list(
                         `name`="var", 
@@ -280,6 +287,13 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 title="Group descriptives",
                 visible="(desc_show)",
                 rows=2,
+                clearWith=list(
+                    "M1",
+                    "SD1",
+                    "n1",
+                    "M2",
+                    "SD2",
+                    "n2"),
                 columns=list(
                     list(
                         `name`="group", 
@@ -317,14 +331,24 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
-                title="Descriptives Plot (mean and 95 % CI)",
+                title="Descriptives Plot (mean and % CI)",
                 width=400,
                 height=300,
                 renderFun=".plot",
                 visible="(dplot_show)",
                 refs=list(
                     "jSumTTest",
-                    "ggplot2")))}))
+                    "ggplot2"),
+                clearWith=list(
+                    "M1",
+                    "SD1",
+                    "n1",
+                    "name1",
+                    "M2",
+                    "SD2",
+                    "n2",
+                    "name2",
+                    "CI_M_width")))}))
 
 jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "jSumTTestBase",
@@ -334,7 +358,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "jSumTTest",
                 name = "jSumTTest",
-                version = c(1,1,0),
+                version = c(1,2,0),
                 options = options,
                 results = jSumTTestResults$new(options=options),
                 data = data,
@@ -347,7 +371,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 weightsSupport = 'na')
         }))
 
-#' Independent Samples Test for Summary Data
+#' Summary Data
 #'
 #' 
 #' @param M1 .
@@ -397,7 +421,7 @@ jSumTTest <- function(
     hypo = "notequal",
     d_show = TRUE,
     CI_d_show = FALSE,
-    CI_d_width = 95,
+    CI_d_width = 90,
     deltaM_show = TRUE,
     SE_deltaM_show = FALSE,
     CI_deltaM_show = FALSE,

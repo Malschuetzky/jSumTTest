@@ -1,6 +1,6 @@
 ---
 name:  jSumTTest
-title: Independent Samples Test for Summary Data
+title: Summary Data
 jrs:   '1.1'
 
 items:
@@ -12,6 +12,15 @@ items:
       title: Independent Samples Test for Summary Data
       type: Table
       rows:  2
+      
+      clearWith:
+        - M1
+        - SD1
+        - n1
+        - M2
+        - SD2
+        - n2
+
       columns:
         - name: var
           title: ''
@@ -78,6 +87,15 @@ items:
       visible: (desc_show)
       type: Table
       rows:  2
+      
+      clearWith:
+        - M1
+        - SD1
+        - n1
+        - M2
+        - SD2
+        - n2
+      
       columns:
         - name: group
           title: Group
@@ -116,7 +134,7 @@ items:
 
           
     - name: plot
-      title: Descriptives Plot (mean and 95 % CI)
+      title: Descriptives Plot (mean and % CI)
       type: Image
       width: 400
       height: 300
@@ -125,4 +143,15 @@ items:
       refs:
         - jSumTTest
         - ggplot2
+      clearWith:
+        - M1
+        - SD1
+        - n1
+        - name1
+        - M2
+        - SD2
+        - n2
+        - name2
+        - CI_M_width
+      
 ...
