@@ -44,7 +44,7 @@ Users of psychometric tests can compare an observed group with the normative dat
 
 Currently only available via sideload. Built module for MS-Windows can be found here :file_folder:: [DOWNLOAD](built_module/Win/jSumTTest_1.2.0.jmo)
 
-After installation you find the function named "Independent Samples Test for Summary Data" in tab "T-Tests" under the new sub-menu "Test for Summary Data [jSumTTest module]".
+After installation you find the function named "Summary Data" in tab "T-Tests" under the new sub-menu "jSumTTest".
 
 ![Screenshot of the menu-path](readme_pics/readme_menu.png)
 
