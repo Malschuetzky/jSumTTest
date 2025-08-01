@@ -42,7 +42,7 @@ Users of psychometric tests can compare an observed group with the normative dat
 
 # 2. Installing jSumTTest
 
-Currently only available via sideload. Built module for MS-Windows can be found here :file_folder:: [DOWNLOAD](built_module/Win/jSumTTest_1.2.0.jmo)
+Latest version of jSumTTest is available via the jamovi library.
 
 After installation you find the function named "Summary Data" in tab "T-Tests" under the new sub-menu "jSumTTest".
 
