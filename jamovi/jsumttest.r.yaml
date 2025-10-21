@@ -27,20 +27,20 @@ items:
           type: text
           
         - name: t
-          title: <i>t</i>
+          title: t
           type: number
           
         - name: df
-          title: <i>df</i>
+          title: df
           type: number
           
         - name: p
-          title: <i>p</i>
+          title: p
           type: number
           format: zto,pvalue
           
         - name: d
-          title: Cohen&rsquo;s <i>d</i>
+          title: Cohen&rsquo;s d
           type: number
           visible: (d_show)
 
@@ -55,12 +55,12 @@ items:
           visible: (d_show && CI_d_show)
           
         - name: deltaM
-          title: <i>&Delta;M</i>
+          title: &Delta;M
           type: number
           visible: (deltaM_show)
           
         - name: SE_deltaM
-          title: <i>SE</i>(&Delta;<i>M</i>)
+          title: SE(&Delta;M)
           type: number
           visible: (deltaM_show && SE_deltaM_show)
           
@@ -102,19 +102,19 @@ items:
           type: text
           
         - name: n
-          title: <i>n</i>
+          title: n
           type: integer
           
         - name: M
-          title: <i>M</i>
+          title: M
           type: number
           
         - name: SD
-          title: <i>SD</i>
+          title: SD
           type: number
           
         - name: SE
-          title: <i>SE</i>(<i>M</i>)
+          title: SE(M)
           type: number
           visible: (desc_show && SE_M_show)
           

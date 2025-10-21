@@ -299,17 +299,17 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           table_descriptives <- self$results$desctable	# descriptives values
           
           # prepare CI(M) SuperTitle
-          CI_M_h <- jmvcore::format('{} % <i>CI</i>(<i>M</i>)', CI_M_W_GUI)
+          CI_M_h <- jmvcore::format('{} % CI(M)', CI_M_W_GUI)
           table_descriptives$getColumn('CI_M_low')$setSuperTitle(CI_M_h)
           table_descriptives$getColumn('CI_M_upp')$setSuperTitle(CI_M_h)          
           
           # prepare CI(d) SuperTitle
-          CI_d_h <- jmvcore::format('{} % <i>CI</i>(<i>d</i>)', self$options$CI_d_width)
+          CI_d_h <- jmvcore::format('{} % CI(d)', self$options$CI_d_width)
           table_tests$getColumn('CI_d_low')$setSuperTitle(CI_d_h)
           table_tests$getColumn('CI_d_upp')$setSuperTitle(CI_d_h)
           
           # prepare CI(mean difference) SuperTitle
-          CI_deltaM_h <- jmvcore::format('{} % <i>CI</i>(&Delta;<i>M</i>)', self$options$CI_deltaM_width)
+          CI_deltaM_h <- jmvcore::format('{} % CI(&Delta;M)', self$options$CI_deltaM_width)
           table_tests$getColumn('CI_deltaM_low')$setSuperTitle(CI_deltaM_h)
           table_tests$getColumn('CI_deltaM_upp')$setSuperTitle(CI_deltaM_h)
           
