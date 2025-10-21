@@ -3,7 +3,7 @@ A [jamovi](https://www.jamovi.org/) (The jamovi project, 2025) module to calcula
 
 **Current version:** 1.2.0
 
-**Citation:** Malschützky, M. M. (2025). *jSumTTest: Independent Samples Test for Summary Data* (Version 1.2.0) [Jamovi module]. https://github.com/Malschuetzky/jSumTTest
+**Citation:** Malschützky, M. M. (2025). *jSumTTest: Independent Samples Test for Summary Data* (Version 1.2.0) [jamovi module]. https://github.com/Malschuetzky/jSumTTest
 
 # 1 Intended use
 ## 1.1 Potential users
