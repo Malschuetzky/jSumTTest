@@ -64,20 +64,21 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           M_diff <- M1-M2
           
 		  
-          ## calculate standard errors of means (Eid et al., 2017, F 8.4b)
-          SE_M1 <- SD1/sqrt(n1)
-          SE_M2 <- SD2/sqrt(n2)
+          ## calculate standard errors of means (Eid et al., 2017, F 8.23)
+          SE_M1 <- SD1/sqrt(n1-1)     # n-1 instead of n as in F 8.4b for unkown population variance
+          SE_M2 <- SD2/sqrt(n2-1)
           
           
           ## calculate Convidence Interval for means
-          # calculate z-value of given CI width
-          z_CI_value <- qnorm(CI_M_W/100)	# qnorm(): standard R-function
-          # calculate CI boarders (Eid et al., 2017, F 8.16)
-          CI_M1_err <- z_CI_value*SE_M1
+          # calculate t-values of given CI width
+          t_CI_value_M1 <- qt(p=CI_M_W/100, df=n1-1)
+          t_CI_value_M2 <- qt(p=CI_M_W/100, df=n2-1)
+          # calculate CI boarders (Eid et al., 2017, F 8.26)
+          CI_M1_err <- t_CI_value_M1*SE_M1
           CI_M1_low <- M1-CI_M1_err
           CI_M1_upp <- M1+CI_M1_err
 		  
-          CI_M2_err <- z_CI_value*SE_M2
+          CI_M2_err <- t_CI_value_M2*SE_M2
           CI_M2_low <- M2-CI_M2_err
           CI_M2_upp <- M2+CI_M2_err
     
@@ -200,9 +201,9 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             p_Stud <- pt(q=t_Stud, df=df_Stud, lower.tail=TRUE)
           }
           
-          # calculate Cohen's d effect size for Student's t-Test (Eid et al., 2017, eq. F 11.13b)
-          #d_Stud <- t_Stud * sqrt((n1+n2)/(n1*n2))
-          d_Stud <- abs(M_diff)/sqrt(var_pooled_Stud) # abs() to prevent negative d values (compared to Cohen, 1988, eq. 2.2.2)
+          # calculate Cohen's d effect size for Student's t-Test 
+          #d_Stud <- t_Stud * sqrt((n1+n2)/(n1*n2))           (Eid et al., 2017, eq. F 11.13b)
+          d_Stud <- abs(M_diff)/sqrt(var_pooled_Stud) # abs() to prevent negative d values (see Cohen, 1988, eq. 2.2.2)
           # calculate Convidence Interval for Cohen's d (Revelle, 2025)
           CI_d_Stud <- psych::d.ci(d_Stud, n1=n1, n2=n2, alpha=CI_d)		# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value          
           CI_d_S_low <- CI_d_Stud[1]
