@@ -53,14 +53,14 @@ After installation you find the function named "Summary Data" in tab "T-Tests" u
 Based on required group data in summarized form (sample size $n_i$, mean $M_i$, and standard deviation $SD_i$) for each of the two groups $i = [1; 2]$ to be compared, the module will calculate additional group descriptives, Welch's t-test, and Student's t-test. Optional, the groups can be named to for more transparent graph and tables in the output.
 
 ## 3.1 Calculate additional descriptives
-+ Calculate standard errors of group means (Eid et al., 2017, F 8.4b): \
-$$SE(M_i) = {SD_i \over \sqrt{n_i}}$$
++ Calculate standard errors of group means for unknown population variance (Eid et al., 2017, F 8.23): \
+$$SE(M_i) = {SD_i \over \sqrt{n_i-1}}$$
 
-+ Calculate convidence intervals for group means (Eid et al., 2017, F 8.16): \
-$$CI(M_i) = M_i \pm (Z(CI_{width}) * SE(M_i))$$ \
-using R function `qnorm()`to calculate $z$-value of user chosen CI-width `CI_width`
++ Calculate convidence intervals for group means (Eid et al., 2017, F 8.26): \
+$$CI(M_i) = M_i \pm (t(CI_{width};df) * SE(M_i))$$ \
+using R function `qt()`to calculate $t$-value of degrees of freedom `df` and user chosen CI-width `CI_width` 
 	```
-	z(CI_widht) = qnorm(CI_width)
+	t(CI_width) = qt(p=CI_width, df=n-1)
 	```
 
 ## 3.2 Perform Welch's t-test
@@ -107,8 +107,8 @@ $$CI_{Welch}(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M)
 $$CI_{Welch}(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$ \
 with calculting $df_{Welch}$ related one- and two-tailed critical $t_{(crit,Welch)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
 		```
-		t_crit_2tailed_Welch <- qt(CI_deltaM_width_2tailed,df_Welch)
-		t_crit_1tailed_Welch <- qt(CI_deltaM_width_1tailed,df_Welch)
+		t_crit_2tailed_Welch <- qt(p=CI_deltaM_width_2tailed, df=df_Welch)
+		t_crit_1tailed_Welch <- qt(p=CI_deltaM_width_1tailed, df=df_Welch)
 		```
 
 
@@ -158,8 +158,8 @@ $$CI_{Student}(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delt
 $$CI_{Student}(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$ \
 with calculting $df_{Student}$ related one- and two-tailed critical $t_{(crit,Student)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
 		```
-		t_crit_2tailed_Student <- qt(CI_deltaM_width_2tailed,df_Student)
-		t_crit_1tailed_Student <- qt(CI_deltaM_width_1tailed,df_Student)
+		t_crit_2tailed_Student <- qt(p=CI_deltaM_width_2tailed, df=df_Student)
+		t_crit_1tailed_Student <- qt(p=CI_deltaM_width_1tailed, df=df_Student)
 		```
 	
 		  
