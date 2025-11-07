@@ -230,20 +230,20 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="text"),
                     list(
                         `name`="t", 
-                        `title`="<i>t</i>", 
+                        `title`="t", 
                         `type`="number"),
                     list(
                         `name`="df", 
-                        `title`="<i>df</i>", 
+                        `title`="df", 
                         `type`="number"),
                     list(
                         `name`="p", 
-                        `title`="<i>p</i>", 
+                        `title`="p", 
                         `type`="number", 
                         `format`="zto,pvalue"),
                     list(
                         `name`="d", 
-                        `title`="Cohen&rsquo;s <i>d</i>", 
+                        `title`="Cohen&rsquo;s d", 
                         `type`="number", 
                         `visible`="(d_show)"),
                     list(
@@ -258,12 +258,12 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `visible`="(d_show && CI_d_show)"),
                     list(
                         `name`="deltaM", 
-                        `title`="<i>&Delta;M</i>", 
+                        `title`="&Delta;M", 
                         `type`="number", 
                         `visible`="(deltaM_show)"),
                     list(
                         `name`="SE_deltaM", 
-                        `title`="<i>SE</i>(&Delta;<i>M</i>)", 
+                        `title`="SE(&Delta;M)", 
                         `type`="number", 
                         `visible`="(deltaM_show && SE_deltaM_show)"),
                     list(
@@ -301,19 +301,19 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="text"),
                     list(
                         `name`="n", 
-                        `title`="<i>n</i>", 
+                        `title`="n", 
                         `type`="integer"),
                     list(
                         `name`="M", 
-                        `title`="<i>M</i>", 
+                        `title`="M", 
                         `type`="number"),
                     list(
                         `name`="SD", 
-                        `title`="<i>SD</i>", 
+                        `title`="SD", 
                         `type`="number"),
                     list(
                         `name`="SE", 
-                        `title`="<i>SE</i>(<i>M</i>)", 
+                        `title`="SE(M)", 
                         `type`="number", 
                         `visible`="(desc_show && SE_M_show)"),
                     list(
@@ -358,7 +358,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "jSumTTest",
                 name = "jSumTTest",
-                version = c(1,2,0),
+                version = c(1,3,0),
                 options = options,
                 results = jSumTTestResults$new(options=options),
                 data = data,

@@ -4,7 +4,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     private = list(
         .run = function() {
           
-          # VERSION 1.2.0 - 2025-07-24
+          # VERSION 1.3.0 - 2025-11-07
           
           
           
