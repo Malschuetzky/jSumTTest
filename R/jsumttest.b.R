@@ -67,7 +67,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           ## calculate standard errors of means (Eid et al., 2017, F 8.23)
           SE_M1 <- SD1/sqrt(n1-1)     # n-1 instead of n as in F 8.4b for unkown population variance
           SE_M2 <- SD2/sqrt(n2-1)
-          
+#SE_M2 <- SD2/sqrt(n2)          
           
           ## calculate Convidence Interval for means
           # calculate t-values of given CI width
@@ -233,13 +233,50 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             CI_deltaM_Stud_upp <- M_diff + CI_deltaM_err_Stud
           }          
  
+# t_Stud <- (M_diff) / SE_M2
+# df_Stud <- n2-1
+# p-table readout
+# if (hypo_tail == 'notequal') {
+#   # two-tailed test (M1 != M2), abs(t_Stud) otherwise p greater 1 possible
+#   p_Stud <- 2*pt(q=abs(t_Stud), df=df_Stud, lower.tail=FALSE)		# pt(): standard R-function
+# } else if (hypo_tail == 'onegreater') {
+#   # one-tailed test (M1 > M2)
+#   p_Stud <- pt(q=t_Stud, df=df_Stud, lower.tail=FALSE)
+# } else {
+#   # one-tailed test (M1 < M2)
+#   p_Stud <- pt(q=t_Stud, df=df_Stud, lower.tail=TRUE)
+# }
 
-          
           # create Student's t-Test output-vector
           results_Stud <- c(t_Stud,df_Stud,p_Stud,d_Stud,CI_d_S_low,CI_d_S_upp,M_diff,SE_Stud,CI_deltaM_Stud_low,CI_deltaM_Stud_upp)
           ### Student's t-Test END ###
           
-		  
+          
+          ### one-sample t-test START###
+          # calculating degrees of freedom for one-sample t-test (p. 255)
+          df_onesample <- n2-1
+          # calculating emprical t-value (F 8.25)
+          t_onesample <- (M_diff) / SE_M2       # M1 in M_diff is single mean, M2 and SE_M2 are group values, SE_M2 is calculated for unknown population variances
+          # p-table readout
+          if (hypo_tail == 'notequal') {
+            # two-tailed test (M1 != M2), abs(t_onesample) otherwise p greater 1 possible
+            p_onesample <- 2*pt(q=abs(t_onesample), df=df_onesample, lower.tail=FALSE)		# pt(): standard R-function
+          } else if (hypo_tail == 'onegreater') {
+            # one-tailed test (M1 > M2)
+            p_onesample <- pt(q=t_onesample, df=df_onesample, lower.tail=FALSE)
+          } else {
+            # one-tailed test (M1 < M2)
+            p_onesample <- pt(q=t_onesample, df=df_onesample, lower.tail=TRUE)
+          }
+          
+          
+          
+          
+          
+          # d braucht neue Berechnung und Grenzen
+          
+          ### one-sample t-test END ###
+          
           
           ### create output of results
           # create output-matrix
