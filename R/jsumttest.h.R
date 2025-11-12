@@ -6,6 +6,7 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     inherit = jmvcore::Options,
     public = list(
         initialize = function(
+            testselect = "ttest_is",
             M1 = 0,
             SD1 = 0,
             n1 = 0,
@@ -15,6 +16,12 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             n2 = 0,
             name2 = "Two",
             hypo = "notequal",
+            M_os = 0,
+            SD_os = 0,
+            n_os = 0,
+            pop_var = "unknown",
+            testvalue_os = 0,
+            hypo_os = "notequal_os",
             d_show = TRUE,
             CI_d_show = FALSE,
             CI_d_width = 90,
@@ -34,6 +41,13 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 requiresData=FALSE,
                 ...)
 
+            private$..testselect <- jmvcore::OptionList$new(
+                "testselect",
+                testselect,
+                options=list(
+                    "ttest_is",
+                    "ttest_os"),
+                default="ttest_is")
             private$..M1 <- jmvcore::OptionNumber$new(
                 "M1",
                 M1,
@@ -74,6 +88,37 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "onegreater",
                     "twogreater"),
                 default="notequal")
+            private$..M_os <- jmvcore::OptionNumber$new(
+                "M_os",
+                M_os,
+                default=0)
+            private$..SD_os <- jmvcore::OptionNumber$new(
+                "SD_os",
+                SD_os,
+                default=0)
+            private$..n_os <- jmvcore::OptionInteger$new(
+                "n_os",
+                n_os,
+                default=0)
+            private$..pop_var <- jmvcore::OptionList$new(
+                "pop_var",
+                pop_var,
+                options=list(
+                    "known",
+                    "unknown"),
+                default="unknown")
+            private$..testvalue_os <- jmvcore::OptionNumber$new(
+                "testvalue_os",
+                testvalue_os,
+                default=0)
+            private$..hypo_os <- jmvcore::OptionList$new(
+                "hypo_os",
+                hypo_os,
+                options=list(
+                    "notequal_os",
+                    "onegreater_os",
+                    "twogreater_os"),
+                default="notequal_os")
             private$..d_show <- jmvcore::OptionBool$new(
                 "d_show",
                 d_show,
@@ -129,6 +174,7 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 dplot_show,
                 default=TRUE)
 
+            self$.addOption(private$..testselect)
             self$.addOption(private$..M1)
             self$.addOption(private$..SD1)
             self$.addOption(private$..n1)
@@ -138,6 +184,12 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..n2)
             self$.addOption(private$..name2)
             self$.addOption(private$..hypo)
+            self$.addOption(private$..M_os)
+            self$.addOption(private$..SD_os)
+            self$.addOption(private$..n_os)
+            self$.addOption(private$..pop_var)
+            self$.addOption(private$..testvalue_os)
+            self$.addOption(private$..hypo_os)
             self$.addOption(private$..d_show)
             self$.addOption(private$..CI_d_show)
             self$.addOption(private$..CI_d_width)
@@ -152,6 +204,7 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..dplot_show)
         }),
     active = list(
+        testselect = function() private$..testselect$value,
         M1 = function() private$..M1$value,
         SD1 = function() private$..SD1$value,
         n1 = function() private$..n1$value,
@@ -161,6 +214,12 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         n2 = function() private$..n2$value,
         name2 = function() private$..name2$value,
         hypo = function() private$..hypo$value,
+        M_os = function() private$..M_os$value,
+        SD_os = function() private$..SD_os$value,
+        n_os = function() private$..n_os$value,
+        pop_var = function() private$..pop_var$value,
+        testvalue_os = function() private$..testvalue_os$value,
+        hypo_os = function() private$..hypo_os$value,
         d_show = function() private$..d_show$value,
         CI_d_show = function() private$..CI_d_show$value,
         CI_d_width = function() private$..CI_d_width$value,
@@ -174,6 +233,7 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         CI_M_width = function() private$..CI_M_width$value,
         dplot_show = function() private$..dplot_show$value),
     private = list(
+        ..testselect = NA,
         ..M1 = NA,
         ..SD1 = NA,
         ..n1 = NA,
@@ -183,6 +243,12 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..n2 = NA,
         ..name2 = NA,
         ..hypo = NA,
+        ..M_os = NA,
+        ..SD_os = NA,
+        ..n_os = NA,
+        ..pop_var = NA,
+        ..testvalue_os = NA,
+        ..hypo_os = NA,
         ..d_show = NA,
         ..CI_d_show = NA,
         ..CI_d_width = NA,
@@ -203,6 +269,8 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     active = list(
         ttesttable = function() private$.items[["ttesttable"]],
         desctable = function() private$.items[["desctable"]],
+        ttesttable_os = function() private$.items[["ttesttable_os"]],
+        desctable_os = function() private$.items[["desctable_os"]],
         plot = function() private$.items[["plot"]]),
     private = list(),
     public=list(
@@ -215,6 +283,7 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 options=options,
                 name="ttesttable",
                 title="Independent Samples Test for Summary Data",
+                visible="(testselect:ttest_is)",
                 rows=2,
                 clearWith=list(
                     "M1",
@@ -284,8 +353,8 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$add(jmvcore::Table$new(
                 options=options,
                 name="desctable",
-                title="Group descriptives",
-                visible="(desc_show)",
+                title="Sample descriptives",
+                visible="(desc_show && testselect:ttest_is)",
                 rows=2,
                 clearWith=list(
                     "M1",
@@ -297,7 +366,7 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 columns=list(
                     list(
                         `name`="group", 
-                        `title`="Group", 
+                        `title`="Sample", 
                         `type`="text"),
                     list(
                         `name`="n", 
@@ -328,6 +397,131 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `visible`="(desc_show && CI_M_show)")),
                 refs=list(
                     "jSumTTest")))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="ttesttable_os",
+                title="One-sample Test for Summary Data",
+                visible="(testselect:ttest_os)",
+                rows=1,
+                clearWith=list(
+                    "M_os",
+                    "SD_os",
+                    "n_os",
+                    "testvalue_os"),
+                columns=list(
+                    list(
+                        `name`="var", 
+                        `title`="", 
+                        `type`="text"),
+                    list(
+                        `name`="t", 
+                        `title`="t", 
+                        `type`="number"),
+                    list(
+                        `name`="df", 
+                        `title`="df", 
+                        `type`="number"),
+                    list(
+                        `name`="p", 
+                        `title`="p", 
+                        `type`="number", 
+                        `format`="zto,pvalue"),
+                    list(
+                        `name`="d", 
+                        `title`="Cohen's d<sup>~</sup>", 
+                        `type`="number", 
+                        `visible`="(d_show)"),
+                    list(
+                        `name`="CI_d_low", 
+                        `title`="Lower", 
+                        `type`="number", 
+                        `visible`="(d_show && CI_d_show)"),
+                    list(
+                        `name`="CI_d_upp", 
+                        `title`="Upper", 
+                        `type`="number", 
+                        `visible`="(d_show && CI_d_show)"),
+                    list(
+                        `name`="d_corr", 
+                        `title`="Cohen's d", 
+                        `type`="number", 
+                        `visible`="(d_show)"),
+                    list(
+                        `name`="CI_d_corr_low", 
+                        `title`="Lower", 
+                        `type`="number", 
+                        `visible`="(d_show && CI_d_show)"),
+                    list(
+                        `name`="CI_d_corr_upp", 
+                        `title`="Upper", 
+                        `type`="number", 
+                        `visible`="(d_show && CI_d_show)"),
+                    list(
+                        `name`="deltaM", 
+                        `title`="&Delta;M", 
+                        `type`="number", 
+                        `visible`="(deltaM_show)"),
+                    list(
+                        `name`="CI_deltaM_low", 
+                        `title`="Lower", 
+                        `type`="number", 
+                        `visible`="(deltaM_show && CI_deltaM_show)"),
+                    list(
+                        `name`="CI_deltaM_upp", 
+                        `title`="Upper", 
+                        `type`="number", 
+                        `visible`="(deltaM_show && CI_deltaM_show)")),
+                notes=list(
+                    `1`="INI"),
+                refs=list(
+                    "jSumTTest")))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="desctable_os",
+                title="Sample descriptives & test value",
+                visible="(desc_show && testselect:ttest_os)",
+                rows=2,
+                clearWith=list(
+                    "M_os",
+                    "SD_os",
+                    "n_os",
+                    "testvalue_os"),
+                columns=list(
+                    list(
+                        `name`="group", 
+                        `title`="", 
+                        `type`="text"),
+                    list(
+                        `name`="n", 
+                        `title`="n", 
+                        `type`="integer"),
+                    list(
+                        `name`="M", 
+                        `title`="M", 
+                        `type`="number"),
+                    list(
+                        `name`="SD", 
+                        `title`="SD", 
+                        `type`="number"),
+                    list(
+                        `name`="SE", 
+                        `title`="SE(M)", 
+                        `type`="number", 
+                        `visible`="(desc_show && SE_M_show)"),
+                    list(
+                        `name`="CI_M_low", 
+                        `title`="Lower", 
+                        `type`="number", 
+                        `visible`="(desc_show && CI_M_show)"),
+                    list(
+                        `name`="CI_M_upp", 
+                        `title`="Upper", 
+                        `type`="number", 
+                        `visible`="(desc_show && CI_M_show)")),
+                notes=list(
+                    `1`="INI"),
+                refs=list(
+                    "jSumTTest")))
             self$add(jmvcore::Image$new(
                 options=options,
                 name="plot",
@@ -348,7 +542,13 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                     "SD2",
                     "n2",
                     "name2",
-                    "CI_M_width")))}))
+                    "CI_M_width",
+                    "M_os",
+                    "SD_os",
+                    "n_os",
+                    "testvalue_os",
+                    "testselect",
+                    "pop_var")))}))
 
 jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
     "jSumTTestBase",
@@ -358,7 +558,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "jSumTTest",
                 name = "jSumTTest",
-                version = c(1,3,0),
+                version = c(2,0,0),
                 options = options,
                 results = jSumTTestResults$new(options=options),
                 data = data,
@@ -374,6 +574,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' Summary Data
 #'
 #' 
+#' @param testselect .
 #' @param M1 .
 #' @param SD1 .
 #' @param n1 .
@@ -383,6 +584,12 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param n2 .
 #' @param name2 .
 #' @param hypo .
+#' @param M_os .
+#' @param SD_os .
+#' @param n_os .
+#' @param pop_var .
+#' @param testvalue_os .
+#' @param hypo_os .
 #' @param d_show .
 #' @param CI_d_show .
 #' @param CI_d_width .
@@ -399,6 +606,8 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' \tabular{llllll}{
 #'   \code{results$ttesttable} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$desctable} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$ttesttable_os} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$desctable_os} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$plot} \tab \tab \tab \tab \tab an image \cr
 #' }
 #'
@@ -410,6 +619,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' @export
 jSumTTest <- function(
+    testselect = "ttest_is",
     M1 = 0,
     SD1 = 0,
     n1 = 0,
@@ -419,6 +629,12 @@ jSumTTest <- function(
     n2 = 0,
     name2 = "Two",
     hypo = "notequal",
+    M_os = 0,
+    SD_os = 0,
+    n_os = 0,
+    pop_var = "unknown",
+    testvalue_os = 0,
+    hypo_os = "notequal_os",
     d_show = TRUE,
     CI_d_show = FALSE,
     CI_d_width = 90,
@@ -437,6 +653,7 @@ jSumTTest <- function(
 
 
     options <- jSumTTestOptions$new(
+        testselect = testselect,
         M1 = M1,
         SD1 = SD1,
         n1 = n1,
@@ -446,6 +663,12 @@ jSumTTest <- function(
         n2 = n2,
         name2 = name2,
         hypo = hypo,
+        M_os = M_os,
+        SD_os = SD_os,
+        n_os = n_os,
+        pop_var = pop_var,
+        testvalue_os = testvalue_os,
+        hypo_os = hypo_os,
         d_show = d_show,
         CI_d_show = CI_d_show,
         CI_d_width = CI_d_width,

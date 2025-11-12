@@ -4,126 +4,197 @@ jus: '3.0'
 stage: 0
 compilerMode: tame
 children:
+  - type: ModeSelector
+    name: testselect
+    stretchFactor: 1
+    children:
+      - type: Content
+        name: ttest_is
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            children:
+              - type: LayoutBox
+                cell:
+                  column: 0
+                  row: 0
+                stretchFactor: 1
+                children:
+                  - type: Label
+                    label: Sample One descriptives
+                    children:
+                      - type: TextBox
+                        name: M1
+                        format: number
+                      - type: TextBox
+                        name: SD1
+                        format: number
+                      - type: TextBox
+                        name: n1
+                        format: number
+                      - type: TextBox
+                        name: name1
+                        format: string
+              - type: LayoutBox
+                cell:
+                  column: 1
+                  row: 0
+                stretchFactor: 1
+                children:
+                  - type: Label
+                    label: Sample Two descriptives
+                    children:
+                      - type: TextBox
+                        name: M2
+                        format: number
+                      - type: TextBox
+                        name: SD2
+                        format: number
+                      - type: TextBox
+                        name: n2
+                        format: number
+                      - type: TextBox
+                        name: name2
+                        format: string
+              - type: LayoutBox
+                cell:
+                  column: 0
+                  row: 1
+                stretchFactor: 1
+                children:
+                  - type: Label
+                    label: Hypothesis
+                    children:
+                      - name: hypo_notequal
+                        type: RadioButton
+                        optionName: hypo
+                        optionPart: notequal
+                      - name: hypo_onegreater
+                        type: RadioButton
+                        optionName: hypo
+                        optionPart: onegreater
+                      - name: hypo_twogreater
+                        type: RadioButton
+                        optionName: hypo
+                        optionPart: twogreater
+      - type: Content
+        name: ttest_os
+        children:
+          - type: LayoutBox
+            margin: large
+            stretchFactor: 1
+            children:
+              - type: LayoutBox
+                cell:
+                  column: 0
+                  row: 0
+                stretchFactor: 1
+                children:
+                  - type: Label
+                    label: Sample descriptives
+                    children:
+                      - type: TextBox
+                        name: M_os
+                        format: number
+                      - type: TextBox
+                        name: SD_os
+                        format: number
+                      - type: TextBox
+                        name: n_os
+                        format: number
+                      - type: ComboBox
+                        name: pop_var
+              - type: LayoutBox
+                cell:
+                  column: 1
+                  row: 0
+                stretchFactor: 1
+                children:
+                  - type: Label
+                    label: Test value
+                    children:
+                      - type: TextBox
+                        name: testvalue_os
+                        format: number
+              - type: LayoutBox
+                cell:
+                  column: 0
+                  row: 1
+                stretchFactor: 1
+                children:
+                  - type: Label
+                    label: Hypothesis
+                    children:
+                      - name: hypo_notequal_os
+                        type: RadioButton
+                        optionName: hypo_os
+                        optionPart: notequal_os
+                      - name: hypo_onegreater_os
+                        type: RadioButton
+                        optionName: hypo_os
+                        optionPart: onegreater_os
+                      - name: hypo_twogreater_os
+                        type: RadioButton
+                        optionName: hypo_os
+                        optionPart: twogreater_os
   - type: LayoutBox
     margin: large
     stretchFactor: 1
     children:
-      - type: LayoutBox
-        cell:
-          column: 0
-          row: 0
-        stretchFactor: 1
+      - type: Label
+        label: Additional options
         children:
-          - type: Label
-            label: Group One descriptives
-            children:
-              - type: TextBox
-                name: M1
-                format: number
-              - type: TextBox
-                name: SD1
-                format: number
-              - type: TextBox
-                name: n1
-                format: number
-              - type: TextBox
-                name: name1
-                format: string
-      - type: LayoutBox
-        cell:
-          column: 1
-          row: 0
-        stretchFactor: 1
-        children:
-          - type: Label
-            label: Group Two descriptives
-            children:
-              - type: TextBox
-                name: M2
-                format: number
-              - type: TextBox
-                name: SD2
-                format: number
-              - type: TextBox
-                name: n2
-                format: number
-              - type: TextBox
-                name: name2
-                format: string
-      - type: LayoutBox
-        cell:
-          column: 0
-          row: 1
-        stretchFactor: 1
-        children:
-          - type: Label
-            label: Hypothesis
-            children:
-              - name: hypo_notequal
-                type: RadioButton
-                optionName: hypo
-                optionPart: notequal
-              - name: hypo_onegreater
-                type: RadioButton
-                optionName: hypo
-                optionPart: onegreater
-              - name: hypo_twogreater
-                type: RadioButton
-                optionName: hypo
-                optionPart: twogreater
-          - type: Label
-            label: Additional options
+          - type: CheckBox
+            name: d_show
             children:
               - type: CheckBox
-                name: d_show
+                name: CI_d_show
+                enable: (d_show)
+                style: inline
+                verticalAlignment: center
                 children:
-                  - type: CheckBox
-                    name: CI_d_show
-                    enable: (d_show)
-                    style: inline
-                    verticalAlignment: center
-                    children:
-                      - type: TextBox
-                        name: CI_d_width
-                        format: number
-                        label: ''
-                        suffix: '%'
-                        enable: (CI_d_show)
+                  - type: TextBox
+                    name: CI_d_width
+                    format: number
+                    label: ''
+                    suffix: '%'
+                    enable: (CI_d_show)
+          - type: CheckBox
+            name: deltaM_show
+            children:
               - type: CheckBox
-                name: deltaM_show
+                name: SE_deltaM_show
+                enable: (deltaM_show && testselect:ttest_is)
+              - type: CheckBox
+                name: CI_deltaM_show
+                enable: (deltaM_show)
+                style: inline
+                verticalAlignment: center
                 children:
-                  - type: CheckBox
-                    name: SE_deltaM_show
-                    enable: (deltaM_show)
-                  - type: CheckBox
-                    name: CI_deltaM_show
-                    enable: (deltaM_show)
-                    style: inline
-                    verticalAlignment: center
-                    children:
-                      - type: TextBox
-                        name: CI_deltaM_width
-                        format: number
-                        label: ''
-                        suffix: '%'
-                        enable: (deltaM_show && CI_deltaM_show)
+                  - type: TextBox
+                    name: CI_deltaM_width
+                    format: number
+                    label: ''
+                    suffix: '%'
+                    enable: (deltaM_show && CI_deltaM_show)
+          - type: CheckBox
+            name: desc_show
+            children:
               - type: CheckBox
-                name: desc_show
+                name: SE_M_show
+                enable: (desc_show)
+              - type: CheckBox
+                name: CI_M_show
+                enable: (desc_show)
+                style: inline
+                verticalAlignment: center
                 children:
-                  - type: CheckBox
-                    name: SE_M_show
-                    enable: (desc_show)
-                  - type: CheckBox
-                    name: CI_M_show
-                    enable: (desc_show)
-                    style: inline
-                    verticalAlignment: center
-                    children:
-                      - type: TextBox
-                        name: CI_M_width
-                        format: number
-                        label: ''
-                        suffix: '%'
-                        enable: ((desc_show && CI_M_show) || dplot_show)
-              - type: CheckBox
-                name: dplot_show
+                  - type: TextBox
+                    name: CI_M_width
+                    format: number
+                    label: ''
+                    suffix: '%'
+                    enable: ((desc_show && CI_M_show) || dplot_show)
+          - type: CheckBox
+            name: dplot_show

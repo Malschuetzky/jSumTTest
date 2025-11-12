@@ -1,9 +1,9 @@
 # jSumTTest
-A [jamovi](https://www.jamovi.org/) (The jamovi project, 2025) module to calculate Student's and Welch's t-test (including related Cohen's $d$) based on summary data (mean, standard deviation, and sample size) for both groups, if raw-data are not available.
+A [jamovi](https://www.jamovi.org/) (The jamovi project, 2025) module to calculate Student's and Welch's t-test for independent samples as well as one-sample t-test (including related Cohen's $d$) based on summary data (mean, standard deviation, and sample size) for both samples resp. one sample and test-value, if raw-data are not available.
 
-**Current version:** 1.2.0
+**Current version:** 2.0.0
 
-**Citation:** Malschützky, M. M. (2025). *jSumTTest: Independent Samples Test for Summary Data* (Version 1.2.0) [jamovi module]. https://github.com/Malschuetzky/jSumTTest
+**Citation:** Malschützky, M. M. (2025). *jSumTTest: Independent Samples & One-Sample T-Test for Summary Data* (Version 2.0.0) [jamovi module]. https://github.com/Malschuetzky/jSumTTest
 
 # 1 Intended use
 ## 1.1 Potential users
@@ -18,10 +18,10 @@ We salute you :vulcan_salute:
 ## 1.2 Potential applications
 Main application is to comprehend reported Student's and Welch's t-test without access to raw-data.
 
-By using reported groups' descriptives (mean $M$, standard deviation $SD$, and sample size $n$) the module calculates:
-+ Additional group descriptives:
-  + Standard errors of group means $SE(M)$
-  + Convidence intervals for group means $CI(M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
+By using reported samples' descriptives (mean $M$, standard deviation $SD$, and sample size $n$) the module calculates:
++ Additional sample descriptives:
+  + Standard errors of sample mean $SE(M)$
+  + Convidence intervals for sample mean $CI(M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
 + One- and two-tailed test satistics for Student's and Welch's t-tests:
   + $t$-value
   + $df$
@@ -33,12 +33,12 @@ By using reported groups' descriptives (mean $M$, standard deviation $SD$, and s
   + Convidence interval for mean-difference $CI(\Delta M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
   
 Additionaly, the module plots:
-+ Mean and related CI for each group in one graph
++ Mean and related CI for each sample in one graph
 + APA-style type tables for above calculated values
 
 These additional values and plots not only supports to comprehend the reported test results and their interpretation. They also help to cope with improper use of statistical tests, e.g., calculating propper Welch's instead of a reported Student's t-test as the authors should have done right from the start (Kubinger et al., 2009; Zimmerman, 2004), or calculate missing effect sizes. They even help to identify fraudulent analyses, e.g., $p$-hacking where authors claim to use two-tailed tests in the method section but report one-tailed $p$-values in the result section instead. Fascinatingly, mostly happens if their two-sided $p$-value is between .09 and .05...
 
-Users of psychometric tests can compare an observed group with the normative data of the used test as well as check reported comparisons and even change the compared sub-group of the normative data to their needs afterwards.
+Users of psychometric tests can compare an observed sample with the normative data of the used test as well as check reported comparisons and even change the compared sub-sample of the normative data to their needs afterwards.
 
 # 2. Installing jSumTTest
 
@@ -50,20 +50,26 @@ After installation you find the function named "Summary Data" in tab "T-Tests" u
 
 # 3. Analytical process
 
-Based on required group data in summarized form (sample size $n_i$, mean $M_i$, and standard deviation $SD_i$) for each of the two groups $i = [1; 2]$ to be compared, the module will calculate additional group descriptives, Welch's t-test, and Student's t-test. Optional, the groups can be named to for more transparent graph and tables in the output.
+## 3.1 Select test version
 
-## 3.1 Calculate additional descriptives
-+ Calculate standard errors of group means for unknown population variance (Eid et al., 2017, F 8.23): \
+The requested t-test can be selected by clicking on "Independent samples" or "One-sample" in the mode-selector "t-test type".
+
+## 3.2 Independent samples test
+
+Based on required sample data in summarized form (sample size $n_i$, mean $M_i$, and standard deviation $SD_i$) for each of the two samples $i = [1; 2]$ to be compared, the module will calculate additional sample descriptives, Welch's t-test, and Student's t-test. Optional, the samples can be named to for more transparent graph and tables in the output.
+
+### 3.2.1 Calculate additional descriptives
++ Calculate standard errors of sample means for unknown population variance (Eid et al., 2017, F 8.23): \
 $$SE(M_i) = {SD_i \over \sqrt{n_i-1}}$$
 
-+ Calculate convidence intervals for group means (Eid et al., 2017, F 8.26): \
++ Calculate convidence intervals for sample means (Eid et al., 2017, F 8.26): \
 $$CI(M_i) = M_i \pm (t(CI_{width};df) * SE(M_i))$$ \
 using R function `qt()`to calculate $t$-value of degrees of freedom `df` and user chosen CI-width `CI_width` 
 	```
 	t(CI_width) = qt(p=CI_width, df=n-1)
 	```
 
-## 3.2 Perform Welch's t-test
+### 3.2.2 Perform Welch's t-test
 + Calculate Welch's $t$-value (Eid et al., 2017, eq. F 11.11):\
 $$t_{Welch} = {\Delta M \over SE_{Welch}(\Delta M)}$$ \
 with mean-difference\
@@ -88,7 +94,7 @@ $$df_{Welch} = {{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over
 		p_Welch <- pt(q=t_Welch, df=df_Welch, lower.tail=TRUE)
 		```
 
-+ Calculate effect size for unequal variances and equal group sizes (Cohen, 1988, eq. 2.2.1, 2.2.2 & 2.3.2):\
++ Calculate effect size for unequal variances and equal sample sizes (Cohen, 1988, eq. 2.2.1, 2.2.2 & 2.3.2):\
 $$d_{Welch} = {|\Delta M| \over \sqrt{ {SD_1^2 + SD_2^2 \over 2}}}$$
 
 + Calculate convidence interval for effect size $CI(d_{Welch})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
@@ -111,8 +117,7 @@ with calculting $df_{Welch}$ related one- and two-tailed critical $t_{(crit,Welc
 		t_crit_1tailed_Welch <- qt(p=CI_deltaM_width_1tailed, df=df_Welch)
 		```
 
-
-## 3.3 Perform Student's t-test
+### 3.2.3 Perform Student's t-test
 + Calculate Student's $t$-value (Eid et al., 2017, eq. F 11.9c):\
 $$t_{Student} = {\Delta M \over SE_{Stud}(\Delta M)}$$ \
 with mean-difference\
@@ -161,7 +166,10 @@ with calculting $df_{Student}$ related one- and two-tailed critical $t_{(crit,St
 		t_crit_2tailed_Student <- qt(p=CI_deltaM_width_2tailed, df=df_Student)
 		t_crit_1tailed_Student <- qt(p=CI_deltaM_width_1tailed, df=df_Student)
 		```
-	
+		
+## 3.3 One-sample test-test
+
+tbd
 		  
 # 4. Contributing
 

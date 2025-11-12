@@ -7,9 +7,11 @@ items:
 #    - name:  text
 #      title: Two Independent Samples Tests for Summary Data
 #      type:  Preformatted
-      
+
+## for independent samples results:
     - name: ttesttable
       title: Independent Samples Test for Summary Data
+      visible: (testselect:ttest_is)
       type: Table
       rows:  2
       
@@ -83,8 +85,8 @@ items:
         
           
     - name: desctable
-      title: Group descriptives
-      visible: (desc_show)
+      title: Sample descriptives
+      visible: (desc_show && testselect:ttest_is)
       type: Table
       rows:  2
       
@@ -98,7 +100,7 @@ items:
       
       columns:
         - name: group
-          title: Group
+          title: Sample
           type: text
           
         - name: n
@@ -132,7 +134,141 @@ items:
       refs:
         - jSumTTest
 
+
+## for one-sample results:
+    - name: ttesttable_os
+      title: One-sample Test for Summary Data
+      visible: (testselect:ttest_os)
+      type: Table
+      rows:  1
+      
+      clearWith:
+        - M_os
+        - SD_os
+        - n_os
+        - testvalue_os
+
+      columns:
+        - name: var
+          title: ''
+          type: text
           
+        - name: t
+          title: t
+          type: number
+          
+        - name: df
+          title: df
+          type: number
+          
+        - name: p
+          title: p
+          type: number
+          format: zto,pvalue
+          
+        - name: d
+          title: Cohen's d<sup>~</sup>
+          type: number
+          visible: (d_show)
+          
+        - name: CI_d_low
+          title: Lower
+          type: number
+          visible: (d_show && CI_d_show)
+
+        - name: CI_d_upp
+          title: Upper
+          type: number
+          visible: (d_show && CI_d_show)
+          
+        - name: d_corr
+          title: Cohen's d
+          type: number
+          visible: (d_show)
+          
+        - name: CI_d_corr_low
+          title: Lower
+          type: number
+          visible: (d_show && CI_d_show)
+
+        - name: CI_d_corr_upp
+          title: Upper
+          type: number
+          visible: (d_show && CI_d_show)
+          
+        - name: deltaM
+          title: '&Delta;M'
+          type: number
+          visible: (deltaM_show)
+          
+        - name: CI_deltaM_low
+          title: Lower
+        #  superTitle: Convidence Interval
+          type: number
+          visible: (deltaM_show && CI_deltaM_show)
+
+        - name: CI_deltaM_upp
+          title: Upper
+        #  superTitle: Convidence Interval
+          type: number
+          visible: (deltaM_show && CI_deltaM_show)
+      notes:
+        1: INI
+      refs:
+        - jSumTTest
+
+
+    - name: desctable_os
+      title: Sample descriptives & test value
+      visible: (desc_show && testselect:ttest_os)
+      type: Table
+      rows:  2
+      
+      clearWith:
+        - M_os
+        - SD_os
+        - n_os
+        - testvalue_os
+
+      columns:
+        - name: group
+          title: ''
+          type: text
+          
+        - name: n
+          title: n
+          type: integer
+          
+        - name: M
+          title: M
+          type: number
+          
+        - name: SD
+          title: SD
+          type: number
+          
+        - name: SE
+          title: SE(M)
+          type: number
+          visible: (desc_show && SE_M_show)
+          
+        - name: CI_M_low
+          title: Lower
+        #  superTitle: Convidence Interval
+          type: number
+          visible: (desc_show && CI_M_show)
+
+        - name: CI_M_upp
+          title: Upper
+        #  superTitle: Convidence Interval
+          type: number
+          visible: (desc_show && CI_M_show)
+      notes:
+        1: INI
+      refs:
+        - jSumTTest
+
+
     - name: plot
       title: Descriptives Plot (mean and % CI)
       type: Image
@@ -153,5 +289,11 @@ items:
         - n2
         - name2
         - CI_M_width
+        - M_os
+        - SD_os
+        - n_os
+        - testvalue_os
+        - testselect
+        - pop_var
       
 ...
