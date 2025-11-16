@@ -1,81 +1,137 @@
 ---
 name:  jSumTTest
 title: Summary Data
-menuGroup: T-Tests #jSumTTest
+menuGroup: T-Tests
 menuSubgroup: jSumTTest
-version: '1.2.0'
+version: '2.0.1'
 jas: '1.2'
 
 options:
 
-# Summary data group 1
+## selection of t-test type
+    - name: testselect
+      title: "t-test type"
+      type: List
+      options:
+            - name: ttest_is
+              title: Independent samples
+            - name: ttest_os
+              title: One-sample
+      default: ttest_is
+
+## testselect:ttest_is   
+# Summary data sample 1
     - name: M1
       type: Number
-      title: Group One mean
+      title: Mean (M1)
       default: 0
 
     - name: SD1
       type: Number
-      title: Group One standard deviation
+      title: Standard deviation (SD1)
       default: 0
       
     - name: n1
       type: Integer
-      title: Group One sample size
+      title: Sample size (n1)
       default: 0
 
     - name: name1
       type: String
-      title: Group One name
+      title: Sample name
       default: 'One'     
 
-# Summary data group 2
+# Summary data sample 2
     - name: M2
       type: Number
-      title: Group Two mean
+      title: Mean (M2)
       default: 0
 
     - name: SD2
       type: Number
-      title: Group Two standard deviation
+      title: Standard deviation (SD2)
       default: 0
       
     - name: n2
       type: Integer
-      title: Group Two sample size
+      title: Sample size (n2)
       default: 0
 
     - name: name2
       type: String
-      title: Group Two name
-      default: 'Two'    
-
-
-## Options
+      title: Sample name
+      default: 'Two'
 
 # Hypothesis
     - name: hypo
       title: Hypothesis
       type: List
       options:
-        - title: Group One ≠ Group Two
+        - title: M1 ≠ M2
           name:  notequal
-        - title: Group One > Group Two
+        - title: M1 > M2
           name:  onegreater
-        - title: Group One < Group Two
+        - title: M1 < M2
           name:  twogreater
       default: notequal
 
+## testselect:ttest_os
+# Summary data sample
+    - name: M_os
+      type: Number
+      title: Mean (M)
+      default: 0
 
+    - name: SD_os
+      type: Number
+      title: Standard deviation (SD)
+      default: 0
+      
+    - name: n_os
+      type: Integer
+      title: Sample size (n)
+      default: 0
+
+# # Selection of SE correction - 
+#     - name: pop_var
+#       title: Population variance
+#       type: List
+#       options:
+#         - title: known
+#           name:  known
+#         - title: unknown
+#           name:  unknown
+#       default: unknown
+
+# Test value
+    - name: testvalue_os
+      type: Number
+      title: Test value (c)
+      default: 0
+      
+# Hypothesis
+    - name: hypo_os
+      title: Hypothesis
+      type: List
+      options:
+        - title: M ≠ c
+          name:  notequal_os
+        - title: M > c
+          name:  onegreater_os
+        - title: M < c
+          name:  twogreater_os
+      default: notequal_os
+
+## Common options for testselect:ttest_is & testselect:ttest_os
 # t-Test table
     - name: d_show
       type: Bool
-      title: Effect size (Cohen's <i>d</i>)
+      title: Effect size (Cohen's d)
       default: true
       
     - name: CI_d_show
       type: Bool
-      title: Convidence Interval of effect size (<i>CI</i>(<i>d</i>))
+      title: Confidence Interval of effect size (CI(d))
       default: false      
 
     - name: CI_d_width
@@ -87,17 +143,17 @@ options:
 
     - name: deltaM_show
       type: Bool
-      title: Mean difference (&Delta;<i>M</i>)
+      title: Mean difference (&Delta;M)
       default: true 
 
     - name: SE_deltaM_show
       type: Bool
-      title: Standard errof of mean difference (<i>SE</i>(&Delta;<i>M</i>))
+      title: Standard errof of mean difference (SE(&Delta;M))
       default: false       
       
     - name: CI_deltaM_show
       type: Bool
-      title: Confidence Interval of mean difference (<i>CI</i>(&Delta;<i>M</i>))
+      title: Confidence Interval of mean difference (CI(&Delta;M))
       default: false
       
     - name: CI_deltaM_width
@@ -107,7 +163,6 @@ options:
       max: 99.9
       default: 95
       
-      
 # Descriptives table
     - name: desc_show
       type: Bool
@@ -116,12 +171,12 @@ options:
       
     - name: SE_M_show
       type: Bool
-      title: Standard error of mean (<i>SE</i>(<i>M</i>))
+      title: Standard error of mean (SE(M))
       default: true      
       
     - name: CI_M_show
       type: Bool
-      title: Convidence Interval of mean (<i>CI</i>(<i>M</i>))
+      title: Confidence Interval of mean (CI(M))
       default: true      
 
     - name: CI_M_width
@@ -135,6 +190,6 @@ options:
     - name: dplot_show
       type: Bool
       title: Descriptives plot
-      default: true   
+      default: true
 
 ...

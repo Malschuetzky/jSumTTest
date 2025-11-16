@@ -1,11 +1,11 @@
 Package: jSumTTest
 Type: Package
-Title: Student and Welch t-Test for Summary Data
-Version: 1.2.0
-Date: 2025-07-24
+Title: Independent Samples & One-Sample T-Test for Summary Data
+Version: 2.0.1
+Date: 2025-11-16
 Author: Michael M. Malschützky
 Maintainer: Michael M. Malschützky <michael.malschuetzky@h-brs.de>
-Description: Calculate Student's and Welch's t-Test (including related Cohen's d) based on summary data (mean, standard deviation, and sample size), to comprehend reported tests.
+Description: Calculate Student's and Welch's t-Test for independent samples as well as one-sample t-test (including related Cohen's d) based on summary data (mean, standard deviation, and sample size) for both samples resp. one sample and test-value, to comprehend reported tests.
 License: GPL3
 Encoding: UTF-8
 LazyData: true

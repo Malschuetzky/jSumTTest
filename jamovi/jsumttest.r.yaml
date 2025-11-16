@@ -7,9 +7,11 @@ items:
 #    - name:  text
 #      title: Two Independent Samples Tests for Summary Data
 #      type:  Preformatted
-      
+
+## for independent samples results:
     - name: ttesttable
       title: Independent Samples Test for Summary Data
+      visible: (testselect:ttest_is)
       type: Table
       rows:  2
       
@@ -27,20 +29,20 @@ items:
           type: text
           
         - name: t
-          title: <i>t</i>
+          title: t
           type: number
           
         - name: df
-          title: <i>df</i>
+          title: df
           type: number
           
         - name: p
-          title: <i>p</i>
+          title: p
           type: number
           format: zto,pvalue
           
         - name: d
-          title: Cohen&rsquo;s <i>d</i>
+          title: Cohen&rsquo;s d
           type: number
           visible: (d_show)
 
@@ -55,24 +57,24 @@ items:
           visible: (d_show && CI_d_show)
           
         - name: deltaM
-          title: <i>&Delta;M</i>
+          title: '&Delta;M'
           type: number
           visible: (deltaM_show)
           
         - name: SE_deltaM
-          title: <i>SE</i>(&Delta;<i>M</i>)
+          title: SE(&Delta;M)
           type: number
           visible: (deltaM_show && SE_deltaM_show)
           
         - name: CI_deltaM_low
           title: Lower
-        #  superTitle: Convidence Interval
+        #  superTitle: Confidence Interval
           type: number
           visible: (deltaM_show && CI_deltaM_show)
 
         - name: CI_deltaM_upp
           title: Upper
-        #  superTitle: Convidence Interval
+        #  superTitle: Confidence Interval
           type: number
           visible: (deltaM_show && CI_deltaM_show)
       notes:
@@ -83,8 +85,8 @@ items:
         
           
     - name: desctable
-      title: Group descriptives
-      visible: (desc_show)
+      title: Sample descriptives
+      visible: (desc_show && testselect:ttest_is)
       type: Table
       rows:  2
       
@@ -98,41 +100,175 @@ items:
       
       columns:
         - name: group
-          title: Group
+          title: Sample
           type: text
           
         - name: n
-          title: <i>n</i>
+          title: n
           type: integer
           
         - name: M
-          title: <i>M</i>
+          title: M
           type: number
           
         - name: SD
-          title: <i>SD</i>
+          title: SD
           type: number
           
         - name: SE
-          title: <i>SE</i>(<i>M</i>)
+          title: SE(M)
           type: number
           visible: (desc_show && SE_M_show)
           
         - name: CI_M_low
           title: Lower
-        #  superTitle: Convidence Interval
+        #  superTitle: Confidence Interval
           type: number
           visible: (desc_show && CI_M_show)
 
         - name: CI_M_upp
           title: Upper
-        #  superTitle: Convidence Interval
+        #  superTitle: Confidence Interval
           type: number
           visible: (desc_show && CI_M_show)
       refs:
         - jSumTTest
 
+
+## for one-sample results:
+    - name: ttesttable_os
+      title: One-sample Test for Summary Data
+      visible: (testselect:ttest_os)
+      type: Table
+      rows:  1
+      
+      clearWith:
+        - M_os
+        - SD_os
+        - n_os
+        - testvalue_os
+
+      columns:
+        - name: var
+          title: ''
+          type: text
           
+        - name: t
+          title: t
+          type: number
+          
+        - name: df
+          title: df
+          type: number
+          
+        - name: p
+          title: p
+          type: number
+          format: zto,pvalue
+          
+        - name: d_dagger
+          title: Cohen's d<sup>&dagger;</sup>
+          type: number
+          visible: (d_show)
+          
+        - name: CI_d_dagger_low
+          title: Lower
+          type: number
+          visible: (d_show && CI_d_show)
+
+        - name: CI_d_dagger_upp
+          title: Upper
+          type: number
+          visible: (d_show && CI_d_show)
+          
+        - name: d
+          title: Cohen's d
+          type: number
+          visible: (d_show)
+          
+        - name: CI_d_low
+          title: Lower
+          type: number
+          visible: (d_show && CI_d_show)
+
+        - name: CI_d_upp
+          title: Upper
+          type: number
+          visible: (d_show && CI_d_show)
+          
+        - name: deltaM
+          title: '&Delta;M'
+          type: number
+          visible: (deltaM_show)
+          
+        - name: CI_deltaM_low
+          title: Lower
+        #  superTitle: Confidence Interval
+          type: number
+          visible: (deltaM_show && CI_deltaM_show)
+
+        - name: CI_deltaM_upp
+          title: Upper
+        #  superTitle: Confidence Interval
+          type: number
+          visible: (deltaM_show && CI_deltaM_show)
+      notes:
+        1: INI
+      refs:
+        - jSumTTest
+
+
+    - name: desctable_os
+      title: Sample descriptives & test value
+      visible: (desc_show && testselect:ttest_os)
+      type: Table
+      rows:  2
+      
+      clearWith:
+        - M_os
+        - SD_os
+        - n_os
+        - testvalue_os
+
+      columns:
+        - name: group
+          title: ''
+          type: text
+          
+        - name: n
+          title: n
+          type: integer
+          
+        - name: M
+          title: M
+          type: number
+          
+        - name: SD
+          title: SD
+          type: number
+          
+        - name: SE
+          title: SE(M)
+          type: number
+          visible: (desc_show && SE_M_show)
+          
+        - name: CI_M_low
+          title: Lower
+        #  superTitle: Confidence Interval
+          type: number
+          visible: (desc_show && CI_M_show)
+
+        - name: CI_M_upp
+          title: Upper
+        #  superTitle: Confidence Interval
+          type: number
+          visible: (desc_show && CI_M_show)
+#      notes:
+#        1: INI
+      refs:
+        - jSumTTest
+
+
     - name: plot
       title: Descriptives Plot (mean and % CI)
       type: Image
@@ -153,5 +289,11 @@ items:
         - n2
         - name2
         - CI_M_width
+        - M_os
+        - SD_os
+        - n_os
+        - testvalue_os
+        - testselect
+        - pop_var
       
 ...
