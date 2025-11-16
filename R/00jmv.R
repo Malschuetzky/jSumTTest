@@ -14,7 +14,7 @@
         `author`="Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D. & van den Brand, T.", 
         `year`=2025, 
         `title`="ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics", 
-        `publisher`="(Version 3.5.2) [R package]. Retrieved from https://CRAN.R-project.org/package=ggplot2", 
+        `publisher`="(Version 4.0.1) [R package]. Retrieved from https://CRAN.R-project.org/package=ggplot2", 
         `url`="https://CRAN.R-project.org/package=ggplot2"), 
     `psych-R`=list(
         `type`="software", 

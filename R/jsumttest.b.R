@@ -80,22 +80,22 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           hypo_tail_os <- self$options$hypo_os
           effect_cb <- self$options$d_show
           if (effect_cb==TRUE) {
-#            Cohen_os <- '. Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction'
-            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction'
+#            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction.'
+            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction.'
           } else {
             Cohen_os <- ''
           }
           
           if (hypo_tail_os == 'notequal_os') {
-#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ &#8800 <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)   # two-tailed test (M != c)
-            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ &#8800 <i>c</i>.{effect}.', effect=Cohen_os)   # two-tailed test (M != c)
+#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ &#8800 <i>c</i>. {variance} population variance.{effect}', variance=pop_var_os, effect=Cohen_os)   # two-tailed test (M != c)
+            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ &#8800 <i>c</i>.{effect}', effect=Cohen_os)   # two-tailed test (M != c)
             table_tests_os$setNote('1',hypo_text_os, init=TRUE)
           } else if (hypo_tail_os == 'onegreater_os') {
-#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ > <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M > c)
-            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ > <i>c</i>.{effect}.', effect=Cohen_os)  # one-tailed test (M > c)
+#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ > <i>c</i>. {variance} population variance.{effect}', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M > c)
+            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ > <i>c</i>.{effect}', effect=Cohen_os)  # one-tailed test (M > c)
             table_tests_os$setNote('1',hypo_text_os, init=TRUE)
           } else if (hypo_tail_os == 'twogreater_os') {
-#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M < c)
+#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>. {variance} population variance.{effect}', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M < c)
             hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>.{effect}.', effect=Cohen_os)  # one-tailed test (M < c)
             table_tests_os$setNote('1',hypo_text_os, init=TRUE)
           } else {     # error-mode
