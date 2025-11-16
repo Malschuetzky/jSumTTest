@@ -216,6 +216,7 @@ Since many statistical tools and functions only display $d_{os}^{\dagger}$ as th
   CI_d_os_dagger <- psych::d.ci(d_os_dagger, n1=n, alpha=CI_d_width)
   CI_d_os_dagger_low <- CI_d_os[1]			# lower value
   CI_d_os_dagger_upp <- CI_d_os[3]			# upper value
+  
   CI_d_os <- psych::d.ci(d_os, n1=n, alpha=CI_d_width)
   CI_d_os_low <- CI_d_os_corr[1]			# lower value
   CI_d_os_upp <- CI_d_os_corr[3]			# upper value
