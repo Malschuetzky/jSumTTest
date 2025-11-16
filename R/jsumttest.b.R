@@ -2,7 +2,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
     "jSumTTestClass",
     inherit = jSumTTestBase,
     private = list(
-    # VERSION 2.0.0 - 2025-11-13
+    # VERSION 2.0.1 - 2025-11-16
       
       .init=function() {
         
@@ -61,7 +61,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           }
           
         } else if (testselect == 'ttest_os') {     # one-sample selected
-          pop_var_os <- self$options$pop_var
+#          pop_var_os <- self$options$pop_var
           
           # set SuperTitles in both tables
           table_descriptives_os$getColumn('CI_M_low')$setSuperTitle(CI_M_h)
@@ -80,30 +80,34 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           hypo_tail_os <- self$options$hypo_os
           effect_cb <- self$options$d_show
           if (effect_cb==TRUE) {
-            Cohen_os <- '. Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard limit values and tables without correction'
+#            Cohen_os <- '. Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold value and tables without correction'
+            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold value and tables without correction'
           } else {
             Cohen_os <- ''
           }
           
           if (hypo_tail_os == 'notequal_os') {
-            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ &#8800 <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)   # two-tailed test (M != c)
+#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ &#8800 <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)   # two-tailed test (M != c)
+            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ &#8800 <i>c</i>.{effect}.', effect=Cohen_os)   # two-tailed test (M != c)
             table_tests_os$setNote('1',hypo_text_os, init=TRUE)
           } else if (hypo_tail_os == 'onegreater_os') {
-            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ > <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M > c)
+#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ > <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M > c)
+            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ > <i>c</i>.{effect}.', effect=Cohen_os)  # one-tailed test (M > c)
             table_tests_os$setNote('1',hypo_text_os, init=TRUE)
           } else if (hypo_tail_os == 'twogreater_os') {
-            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M < c)
+#            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>. {variance} population variance{effect}.', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M < c)
+            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>.{effect}.', effect=Cohen_os)  # one-tailed test (M < c)
             table_tests_os$setNote('1',hypo_text_os, init=TRUE)
           } else {     # error-mode
             table_tests_os$setError('init function error: hypothesis selection one-sample')
           }
           
-          if ( SE_M_cb==TRUE || CI_M_cb==TRUE) {
-            table_descriptives_os_text <- jmvcore::format('<i>SE</i>(<i>M</i>) and {width}% <i>CI</i>(<i>M</i>) based on {variance} population variance.', width=CI_M_W_GUI, variance=pop_var_os)
-            table_descriptives_os$setNote('1',table_descriptives_os_text, init=TRUE)
-          } else {
-            table_descriptives_os$setNote(key = "1", note = NULL)
-          }
+#          if ( SE_M_cb==TRUE || CI_M_cb==TRUE) {
+#            table_descriptives_os_text <- jmvcore::format('<i>SE</i>(<i>M</i>) and {width}% <i>CI</i>(<i>M</i>) based on {variance} population variance.', width=CI_M_W_GUI, variance=pop_var_os)
+#            table_descriptives_os$setNote('1',table_descriptives_os_text, init=TRUE)
+#          } else {
+#            table_descriptives_os$setNote(key = "1", note = NULL)
+#          }
 
         } else {     # error-mode
           #table_tests$setNote('1','init function error: test selection', init=TRUE) 
@@ -156,7 +160,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           n_os <- self$options$n_os
           M_os <- self$options$M_os
           SD_os <- self$options$SD_os
-          pop_var_os <- self$options$pop_var
+#          pop_var_os <- self$options$pop_var
           
           # test value
           tv_os <- self$options$testvalue_os
@@ -201,15 +205,15 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           SE_M1 <- SD1/sqrt(n1-1)     # for unkown population variance
           SE_M2 <- SD2/sqrt(n2-1)
           # one-sample
-          if (pop_var_os == 'known') {
+#          if (pop_var_os == 'known') {
             SE_M_os <- SD_os/sqrt(n_os)           # for kown population variance
-          } else if (pop_var_os == 'unknown') {
-            SE_M_os <- SD_os/sqrt(n_os-1)         # for unkown population variance
-          } else {    # error-mode
-            SE_M_os <- NaN
-            table_tests_os$setError('calculation SE(M) error: variance status selection one-sample')            
-            table_descriptives_os$setError('calculation SE(M) error: variance status selection one-sample')
-          }
+#          } else if (pop_var_os == 'unknown') {
+#            SE_M_os <- SD_os/sqrt(n_os-1)         # for unkown population variance
+#          } else {    # error-mode
+#            SE_M_os <- NaN
+#            table_tests_os$setError('calculation SE(M) error: variance status selection one-sample')            
+#            table_descriptives_os$setError('calculation SE(M) error: variance status selection one-sample')
+#          }
 
           ### calculate Convidence Interval for means
           ## calculate t-values of given CI width
@@ -385,7 +389,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           }
           
           # calculate Cohen's d effect size for Student's t-Test 
-          #d_Stud <- t_Stud * sqrt((n1+n2)/(n1*n2))           (Eid et al., 2017, eq. F 11.13b)
+          #d_Stud <- t_Stud * sqrt((n1+n2)/(n1*n2)) = t_Stud * sqrt((1/n1)+(1/n2))           (Eid et al., 2017, eq. F 11.13b)
           d_Stud <- abs(M_diff)/sqrt(var_pooled_Stud) # abs() to prevent negative d values (see Cohen, 1988, eq. 2.2.2)
           # calculate Convidence Interval for Cohen's d (Revelle, 2025)
           CI_d_Stud <- psych::d.ci(d_Stud, n1=n1, n2=n2, alpha=CI_d)		# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value          

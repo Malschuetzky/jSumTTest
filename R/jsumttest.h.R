@@ -19,7 +19,6 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             M_os = 0,
             SD_os = 0,
             n_os = 0,
-            pop_var = "unknown",
             testvalue_os = 0,
             hypo_os = "notequal_os",
             d_show = TRUE,
@@ -100,13 +99,6 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                 "n_os",
                 n_os,
                 default=0)
-            private$..pop_var <- jmvcore::OptionList$new(
-                "pop_var",
-                pop_var,
-                options=list(
-                    "known",
-                    "unknown"),
-                default="unknown")
             private$..testvalue_os <- jmvcore::OptionNumber$new(
                 "testvalue_os",
                 testvalue_os,
@@ -187,7 +179,6 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             self$.addOption(private$..M_os)
             self$.addOption(private$..SD_os)
             self$.addOption(private$..n_os)
-            self$.addOption(private$..pop_var)
             self$.addOption(private$..testvalue_os)
             self$.addOption(private$..hypo_os)
             self$.addOption(private$..d_show)
@@ -217,7 +208,6 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         M_os = function() private$..M_os$value,
         SD_os = function() private$..SD_os$value,
         n_os = function() private$..n_os$value,
-        pop_var = function() private$..pop_var$value,
         testvalue_os = function() private$..testvalue_os$value,
         hypo_os = function() private$..hypo_os$value,
         d_show = function() private$..d_show$value,
@@ -246,7 +236,6 @@ jSumTTestOptions <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
         ..M_os = NA,
         ..SD_os = NA,
         ..n_os = NA,
-        ..pop_var = NA,
         ..testvalue_os = NA,
         ..hypo_os = NA,
         ..d_show = NA,
@@ -518,8 +507,6 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `title`="Upper", 
                         `type`="number", 
                         `visible`="(desc_show && CI_M_show)")),
-                notes=list(
-                    `1`="INI"),
                 refs=list(
                     "jSumTTest")))
             self$add(jmvcore::Image$new(
@@ -558,7 +545,7 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
             super$initialize(
                 package = "jSumTTest",
                 name = "jSumTTest",
-                version = c(2,0,0),
+                version = c(2,0,1),
                 options = options,
                 results = jSumTTestResults$new(options=options),
                 data = data,
@@ -587,7 +574,6 @@ jSumTTestBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param M_os .
 #' @param SD_os .
 #' @param n_os .
-#' @param pop_var .
 #' @param testvalue_os .
 #' @param hypo_os .
 #' @param d_show .
@@ -632,7 +618,6 @@ jSumTTest <- function(
     M_os = 0,
     SD_os = 0,
     n_os = 0,
-    pop_var = "unknown",
     testvalue_os = 0,
     hypo_os = "notequal_os",
     d_show = TRUE,
@@ -666,7 +651,6 @@ jSumTTest <- function(
         M_os = M_os,
         SD_os = SD_os,
         n_os = n_os,
-        pop_var = pop_var,
         testvalue_os = testvalue_os,
         hypo_os = hypo_os,
         d_show = d_show,

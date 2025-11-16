@@ -103,8 +103,6 @@ children:
                       - type: TextBox
                         name: n_os
                         format: number
-                      - type: ComboBox
-                        name: pop_var
               - type: LayoutBox
                 cell:
                   column: 1

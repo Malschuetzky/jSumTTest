@@ -263,8 +263,8 @@ items:
         #  superTitle: Convidence Interval
           type: number
           visible: (desc_show && CI_M_show)
-      notes:
-        1: INI
+#      notes:
+#        1: INI
       refs:
         - jSumTTest
 

@@ -1,12 +1,12 @@
 ---
 title: Independent Samples & One-Sample T-Test for Summary Data
 name: jSumTTest
-version: 2.0.0
+version: 2.0.1
 jms: '1.0'
 authors:
   - Michael M. Malschützky
 maintainer: Michael M. Malschützky <michael.malschuetzky@h-brs.de>
-date: '2025-11-13'
+date: '2025-11-16'
 type: R
 description: >-
   Calculate Student's and Welch's t-Test for independent samples as well as

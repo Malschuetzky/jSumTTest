@@ -1,9 +1,9 @@
 ---
 name:  jSumTTest
 title: Summary Data
-menuGroup: T-Tests #jSumTTest
+menuGroup: T-Tests
 menuSubgroup: jSumTTest
-version: '2.0.0'
+version: '2.0.1'
 jas: '1.2'
 
 options:
@@ -92,16 +92,16 @@ options:
       title: Sample size (n)
       default: 0
 
-# Selection of SE correction
-    - name: pop_var
-      title: Population variance
-      type: List
-      options:
-        - title: known
-          name:  known
-        - title: unknown
-          name:  unknown
-      default: unknown
+# # Selection of SE correction - 
+#     - name: pop_var
+#       title: Population variance
+#       type: List
+#       options:
+#         - title: known
+#           name:  known
+#         - title: unknown
+#           name:  unknown
+#       default: unknown
 
 # Test value
     - name: testvalue_os
