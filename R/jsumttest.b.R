@@ -96,7 +96,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             table_tests_os$setNote('1',hypo_text_os, init=TRUE)
           } else if (hypo_tail_os == 'twogreater_os') {
 #            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>. {variance} population variance.{effect}', variance=pop_var_os, effect=Cohen_os)  # one-tailed test (M < c)
-            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>.{effect}.', effect=Cohen_os)  # one-tailed test (M < c)
+            hypo_text_os <- jmvcore::format('H<sub>a</sub>: μ < <i>c</i>.{effect}', effect=Cohen_os)  # one-tailed test (M < c)
             table_tests_os$setNote('1',hypo_text_os, init=TRUE)
           } else {     # error-mode
             table_tests_os$setError('init function error: hypothesis selection one-sample')
