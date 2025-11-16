@@ -80,8 +80,8 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           hypo_tail_os <- self$options$hypo_os
           effect_cb <- self$options$d_show
           if (effect_cb==TRUE) {
-#            Cohen_os <- '. Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold value and tables without correction'
-            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold value and tables without correction'
+#            Cohen_os <- '. Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction'
+            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction'
           } else {
             Cohen_os <- ''
           }
