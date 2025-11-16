@@ -1,8 +1,3 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
 # jSumTTest
 A [jamovi](https://www.jamovi.org/) (The jamovi project, 2025) module to calculate Student's and Welch's t-test for independent samples as well as one-sample t-test (including related Cohen's $d$) based on summary data (mean, standard deviation, and sample size) for both samples resp. one sample and test-value, if raw-data are not available.
 
