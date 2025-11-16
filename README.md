@@ -21,13 +21,13 @@ A [jamovi](https://www.jamovi.org/) (The jamovi project, 2025) module to calcula
 We salute you :vulcan_salute:
 
 ## 1.2 Potential applications
-Main application is to comprehend reported Student's and Welch's t-test without access to raw-data.
+Main application is to comprehend reported Student's, Welch's and one-sample t-test without access to raw-data.
 
 By using reported samples' descriptives (mean $M$, standard deviation $SD$, and sample size $n$) the module calculates:
 + Additional sample descriptives:
   + Standard errors of sample mean $SE(M)$
   + Confidence intervals for sample mean $CI(M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
-+ One- and two-tailed test satistics for Student's and Welch's t-tests:
++ One- and two-tailed test satistics for Student's, Welch's and one-sample t-tests:
   + $t$-value
   + $df$
   + $p$-value
@@ -117,12 +117,12 @@ $$d_{Welch} = {|\Delta M| \over \sqrt{ {SD_1^2 + SD_2^2 \over 2}}}$$
 
 + Calculate confidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
-$$CI_{Welch}(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
+$$CI_{Welch}(\Delta M) = \Delta M \pm t_{crit;two-tailed} * SE_{Welch}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
-$$CI_{Welch}(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Welch}(\Delta M); \infty]$$
+$$CI_{Welch}(\Delta M) = [\Delta M - t_{crit;one-tailed} * SE_{Welch}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI_{Welch}(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Welch}(\Delta M)]$$ \
-with calculting $df_{Welch}$ related one- and two-tailed critical $t_{(crit,Welch)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
+$$CI_{Welch}(\Delta M) = [-\infty ; \Delta M + t_{crit;one-tailed} * SE_{Welch}(\Delta M)]$$ \
+with calculting $df_{Welch}$ related one- and two-tailed critical $t_{(crit;Welch)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
 		```
 		t_crit_2tailed_Welch <- qt(p=CI_deltaM_width_2tailed, df=df_Welch)
 		t_crit_1tailed_Welch <- qt(p=CI_deltaM_width_1tailed, df=df_Welch)
@@ -167,12 +167,12 @@ $$d_{Student} = {|\Delta M| \over SD_{pooled}} = {|\Delta M| \over \sqrt{\sigma_
 
 + Calculate confidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
-$$CI_{Student}(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$
+$$CI_{Student}(\Delta M) = \Delta M \pm t_{crit;two-tailed} * SE_{Student}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
-$$CI_{Student}(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE_{Student}(\Delta M); \infty]$$
+$$CI_{Student}(\Delta M) = [\Delta M - t_{crit;one-tailed} * SE_{Student}(\Delta M); \infty]$$
 	+ one-tailed hypothesis $M_1 < M_2$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI_{Student}(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE_{Student}(\Delta M)]$$ \
-with calculting $df_{Student}$ related one- and two-tailed critical $t_{(crit,Student)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
+$$CI_{Student}(\Delta M) = [-\infty ; \Delta M + t_{crit;one-tailed} * SE_{Student}(\Delta M)]$$ \
+with calculting $df_{Student}$ related one- and two-tailed critical $t_{(crit;Student)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
 		```
 		t_crit_2tailed_Student <- qt(p=CI_deltaM_width_2tailed, df=df_Student)
 		t_crit_1tailed_Student <- qt(p=CI_deltaM_width_1tailed, df=df_Student)
@@ -183,7 +183,7 @@ with calculting $df_{Student}$ related one- and two-tailed critical $t_{(crit,St
 Based on required sample data in summarized form (sample size $n$, mean $M$, and standard deviation $SD$) and the test value ($c$) to be compared, the module calculates the one-sample t-test.
 
 + Calculate degrees of freedom for sample (Cohen, 1988, p. 46; Eid et al., 2017, p. 255):\
-$$df_{os} = {n-1}$$ \
+$$df_{os} = {n-1}$$
 
 + Calculate $t$-value for one-sample t-test (Eid et al., 2017, eq. F 8.25):\
 $$t_{os} = {\Delta M \over SE(M)}$$ \
@@ -212,24 +212,24 @@ $$d_{os} = {d_{os}^{\dagger} * \sqrt{2}}$$\
 Since many statistical tools and functions only display $d_{os}^{\dagger}$ as the effect size, both values are shown in the results table for consistency reasons.
 
 + Calculate confidence interval for effect size $CI(d_{os}^{\dagger})$ and $CI(d_{os})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width` and sample size $n$:
-		```
+		````
 		CI_d_os_dagger <- psych::d.ci(d_os_dagger, n1=n, alpha=CI_d_width)
 		CI_d_os_dagger_low <- CI_d_os[1]			# lower value
 		CI_d_os_dagger_upp <- CI_d_os[3]			# upper value
-		#
+		
 		CI_d_os <- psych::d.ci(d_os, n1=n, alpha=CI_d_width)
 		CI_d_os_low <- CI_d_os_corr[1]			# lower value
 		CI_d_os_upp <- CI_d_os_corr[3]			# upper value
-		```
+		````
 
 + Calculate confidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
-$$CI_{os}(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE(M)$$
+$$CI_{os}(\Delta M) = \Delta M \pm t_{crit;two-tailed} * SE(M)$$
 	+ one-tailed hypothesis $M > c$ (Eid et al., 2017, eq. F 11.14b):\
-$$CI_{os}(\Delta M) = [\Delta M - t_{crit, one-tailed} * SE(M); \infty]$$
+$$CI_{os}(\Delta M) = [\Delta M - t_{crit;one-tailed} * SE(M); \infty]$$
 	+ one-tailed hypothesis $M < c$ (Eid et al., 2017, eq. F 11.14c):\
-$$CI_{os}(\Delta M) = [-\infty ; \Delta M + t_{crit, one-tailed} * SE(M)]$$ \
-with calculting $df_{os}$ related one- and two-tailed critical $t_{(crit,os)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
+$$CI_{os}(\Delta M) = [-\infty ; \Delta M + t_{crit;one-tailed} * SE(M)]$$ \
+with calculting $df_{os}$ related one- and two-tailed critical $t_{(crit;os)}$-value using R function `qt()` and user chosen CI-width `CI_deltaM_width_2tailed`for two-tailed hyothesis and respectively `CI_deltaM_width_1tailed`for one-tailed hyothesis:
 		```
 		t_crit_2tailed_os <- qt(p=CI_deltaM_width_2tailed, df=df_os)
 		t_crit_1tailed_os <- qt(p=CI_deltaM_width_1tailed, df=df_os)
