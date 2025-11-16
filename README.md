@@ -109,11 +109,11 @@ $$df_{Welch} = {{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over
 $$d_{Welch} = {|\Delta M| \over \sqrt{ {SD_1^2 + SD_2^2 \over 2}}}$$
 
 + Calculate confidence interval for effect size $CI(d_{Welch})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
-	````
+	```
 	CI_d_Welch <- psych::d.ci(d_Welch, n1=n_1, n2=n_2, alpha=CI_d_width)
 	CI_d_Welch_low <- CI_d_Welch[1]			# lower value
 	CI_d_Welch_upp <- CI_d_Welch[3]			# upper value
-	 ````
+	```
 
 + Calculate confidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
@@ -159,11 +159,11 @@ $$df_{Student} = (n_1-1)+(n_2-1)$$
 $$d_{Student} = {|\Delta M| \over SD_{pooled}} = {|\Delta M| \over \sqrt{\sigma_{pooled}^2}}$$
 
 + Calculate confidence interval for effect size $CI(d_{Student})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
-	````
-	CI_d_Student <- psych::d.ci(d_Student, n1=n_1, n2=n_2, alpha=CI_d_width)
-	CI_d_Student_low <- CI_d_Student[1]			# lower value
-	CI_d_Student_upp <- CI_d_Student[3]			# upper value
-	 ````
+  ```
+  CI_d_Student <- psych::d.ci(d_Student, n1=n_1, n2=n_2, alpha=CI_d_width)
+  CI_d_Student_low <- CI_d_Student[1]			# lower value
+  CI_d_Student_upp <- CI_d_Student[3]			# upper value
+  ```
 
 + Calculate confidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
@@ -212,14 +212,14 @@ $$d_{os} = {d_{os}^{\dagger} * \sqrt{2}}$$\
 Since many statistical tools and functions only display $d_{os}^{\dagger}$ as the effect size, both values are shown in the results table for consistency reasons.
 
 + Calculate confidence interval for effect size $CI(d_{os}^{\dagger})$ and $CI(d_{os})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width` and sample size $n$:
-		````
-		CI_d_os_dagger <- psych::d.ci(d_os_dagger, n1=n, alpha=CI_d_width)
-		CI_d_os_dagger_low <- CI_d_os[1]			# lower value
-		CI_d_os_dagger_upp <- CI_d_os[3]			# upper value
-		CI_d_os <- psych::d.ci(d_os, n1=n, alpha=CI_d_width)
-		CI_d_os_low <- CI_d_os_corr[1]			# lower value
-		CI_d_os_upp <- CI_d_os_corr[3]			# upper value
-		````
+  ```
+  CI_d_os_dagger <- psych::d.ci(d_os_dagger, n1=n, alpha=CI_d_width)
+  CI_d_os_dagger_low <- CI_d_os[1]			# lower value
+  CI_d_os_dagger_upp <- CI_d_os[3]			# upper value
+  CI_d_os <- psych::d.ci(d_os, n1=n, alpha=CI_d_width)
+  CI_d_os_low <- CI_d_os_corr[1]			# lower value
+  CI_d_os_upp <- CI_d_os_corr[3]			# upper value
+  ```
 
 + Calculate confidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
