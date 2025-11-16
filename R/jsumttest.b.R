@@ -28,7 +28,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         # CI(d) SuperTitle for independent samples and corrected one-sample effect
         CI_d_h <- jmvcore::format('{}% CI(d)', self$options$CI_d_width)
         # CI(d*) SuperTitle for one-sample
-        CI_d_os_h <- jmvcore::format('{}% CI(d<sup>~</sup>)', self$options$CI_d_width)
+        CI_d_os_dagger_h <- jmvcore::format('{}% CI(d<sup>&dagger;</sup>)', self$options$CI_d_width)
         # CI(mean difference) SuperTitle
         CI_deltaM_h <- jmvcore::format('{}% CI(&Delta;M)', self$options$CI_deltaM_width)
         
@@ -67,11 +67,11 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           table_descriptives_os$getColumn('CI_M_low')$setSuperTitle(CI_M_h)
           table_descriptives_os$getColumn('CI_M_upp')$setSuperTitle(CI_M_h)
           
-          table_tests_os$getColumn('CI_d_low')$setSuperTitle(CI_d_os_h)
-          table_tests_os$getColumn('CI_d_upp')$setSuperTitle(CI_d_os_h)
+          table_tests_os$getColumn('CI_d_dagger_low')$setSuperTitle(CI_d_os_dagger_h)
+          table_tests_os$getColumn('CI_d_dagger_upp')$setSuperTitle(CI_d_os_dagger_h)
           
-          table_tests_os$getColumn('CI_d_corr_low')$setSuperTitle(CI_d_h)
-          table_tests_os$getColumn('CI_d_corr_upp')$setSuperTitle(CI_d_h)
+          table_tests_os$getColumn('CI_d_low')$setSuperTitle(CI_d_h)
+          table_tests_os$getColumn('CI_d_upp')$setSuperTitle(CI_d_h)
           
           table_tests_os$getColumn('CI_deltaM_low')$setSuperTitle(CI_deltaM_h)
           table_tests_os$getColumn('CI_deltaM_upp')$setSuperTitle(CI_deltaM_h)
@@ -80,8 +80,8 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           hypo_tail_os <- self$options$hypo_os
           effect_cb <- self$options$d_show
           if (effect_cb==TRUE) {
-#            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction.'
-            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>~</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction.'
+#            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>&dagger;</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction.'
+            Cohen_os <- ' Cohen&apos;s <i>d</i> = <i>d</i><sup>&dagger;</sup>&Sqrt;(2) allows usage of standard threshold values and tables without correction.'
           } else {
             Cohen_os <- ''
           }
@@ -200,13 +200,13 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           # one-sample
           M_diff_os <- M_os-tv_os
           
-          ## calculate standard errors of means (Eid et al., 2017, F 8.23)
+          ## calculate standard errors of means (Eid et al., 2017, F 8.4b)
           # independent samples
-          SE_M1 <- SD1/sqrt(n1-1)     # for unkown population variance
-          SE_M2 <- SD2/sqrt(n2-1)
+          SE_M1 <- SD1/sqrt(n1)
+          SE_M2 <- SD2/sqrt(n2)
           # one-sample
 #          if (pop_var_os == 'known') {
-            SE_M_os <- SD_os/sqrt(n_os)           # for kown population variance
+            SE_M_os <- SD_os/sqrt(n_os)           ## for kown population variance
 #          } else if (pop_var_os == 'unknown') {
 #            SE_M_os <- SD_os/sqrt(n_os-1)         # for unkown population variance
 #          } else {    # error-mode
@@ -493,19 +493,19 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
           ## calculate effect size
           # calculate Cohen's d' (Cohen, 1988, eq. 2.3.3)
-          d_os <- abs(M_diff_os/SD_os)  # abs() to prevent negative d values (see Cohen, 1988, eq. 2.2.2)
+          d_os_dagger <- abs(M_diff_os/SD_os)  # abs() to prevent negative d values (see Cohen, 1988, eq. 2.2.2)
           # calculate corrected Cohen's d for direct interpretation (Cohen, 1988, eq. 2.3.4)
-          d_os_corr <- d_os*sqrt(2)
+          d_os <- d_os_dagger*sqrt(2)
                    
           ## calculate Confidence Interval for Cohen's d' and d (Revelle, 2025)
           # CI(d')
+          CI_d_os_dagger <- psych::d.ci(d_os_dagger, n1=n_os, alpha=CI_d)	# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value
+          CI_d_os_dagger_low <- CI_d_os_dagger[1]
+          CI_d_os_dagger_upp <- CI_d_os_dagger[3]
+          # CI(d)
           CI_d_os <- psych::d.ci(d_os, n1=n_os, alpha=CI_d)	# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value
           CI_d_os_low <- CI_d_os[1]
-          CI_d_os_upp <- CI_d_os[3]
-          # CI(d)
-          CI_d_corr_os <- psych::d.ci(d_os_corr, n1=n_os, alpha=CI_d)	# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value
-          CI_d_corr_os_low <- CI_d_corr_os[1]
-          CI_d_corr_os_upp <- CI_d_corr_os[3]          
+          CI_d_os_upp <- CI_d_os[3]          
 
           
           ## calculate standard error of mean difference
@@ -541,19 +541,19 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
           
           # create output-vector
-          results_os <- c(t_os,df_os,p_os,d_os,CI_d_os_low,CI_d_os_upp,d_os_corr,CI_d_corr_os_low,CI_d_corr_os_upp,M_diff_os,CI_deltaM_os_low,CI_deltaM_os_upp)
+          results_os <- c(t_os,df_os,p_os,d_os_dagger,CI_d_os_dagger_low,CI_d_os_dagger_upp,d_os,CI_d_os_low,CI_d_os_upp,M_diff_os,CI_deltaM_os_low,CI_deltaM_os_upp)
 
           table_tests_os$setRow(rowNo=1, values=list(
             var='t-test',
             t=results_os[1],
             df=results_os[2],
             p=results_os[3],
-            d=results_os[4],
-            CI_d_low=results_os[5],
-            CI_d_upp=results_os[6],
-            d_corr=results_os[7],            
-            CI_d_corr_low=results_os[8],
-            CI_d_corr_upp=results_os[9],            
+            d_dagger=results_os[4],
+            CI_d_dagger_low=results_os[5],
+            CI_d_dagger_upp=results_os[6],
+            d=results_os[7],            
+            CI_d_low=results_os[8],
+            CI_d_upp=results_os[9],            
             deltaM=results_os[10],
             CI_deltaM_low=results_os[11],
             CI_deltaM_upp=results_os[12]
@@ -607,6 +607,6 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 ### References ###
 # Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed). L. Erlbaum Associates.
 # Eid, M., Gollwitzer, M., & Schmitt, M. (2017). Statistik und Forschungsmethoden (5., korrigierte Auflage). Beltz.
-# R Core Team. (2025). R: A Language and Environment for Statistical Computing (Version 4.5.0) [Computer Software]. R Foundation for Statistical Computing. https://www.R-project.org/
-# Revelle, W. (2025). psych: Procedures for Psychological, Psychometric, and Personality Research (Version 2.5.3) [R package]. https://cran.r-project.org/web/packages/psych/index.html
-# Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D., & van den Brand, T. (2025). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.5.2) [R package]. Posit, PBC. https://cran.r-project.org/package=ggplot2
+# R Core Team. (2025). R: A Language and Environment for Statistical Computing (Version 4.5.2) [Computer Software]. R Foundation for Statistical Computing. https://www.R-project.org/
+# Revelle, W. (2025). psych: Procedures for Psychological, Psychometric, and Personality Research (Version 2.5.6) [R package]. https://cran.r-project.org/web/packages/psych/index.html
+# Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., Woo, K., Yutani, H., Dunnington, D., & van den Brand, T. (2025). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 4.0.1) [R package]. Posit, PBC. https://cran.r-project.org/package=ggplot2

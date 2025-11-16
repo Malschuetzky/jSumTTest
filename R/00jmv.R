@@ -21,5 +21,5 @@
         `author`="Revelle, W.", 
         `year`=2025, 
         `title`="psych: Procedures for Psychological, Psychometric, and Personality Research", 
-        `publisher`="(Version 2.5.3) [R package]. Retrieved from https://cran.r-project.org/package=psych", 
+        `publisher`="(Version 2.5.6) [R package]. Retrieved from https://cran.r-project.org/package=psych", 
         `url`="https://cran.r-project.org/package=psych"))

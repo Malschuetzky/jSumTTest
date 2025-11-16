@@ -416,8 +416,23 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `type`="number", 
                         `format`="zto,pvalue"),
                     list(
+                        `name`="d_dagger", 
+                        `title`="Cohen's d<sup>&dagger;</sup>", 
+                        `type`="number", 
+                        `visible`="(d_show)"),
+                    list(
+                        `name`="CI_d_dagger_low", 
+                        `title`="Lower", 
+                        `type`="number", 
+                        `visible`="(d_show && CI_d_show)"),
+                    list(
+                        `name`="CI_d_dagger_upp", 
+                        `title`="Upper", 
+                        `type`="number", 
+                        `visible`="(d_show && CI_d_show)"),
+                    list(
                         `name`="d", 
-                        `title`="Cohen's d<sup>~</sup>", 
+                        `title`="Cohen's d", 
                         `type`="number", 
                         `visible`="(d_show)"),
                     list(
@@ -427,21 +442,6 @@ jSumTTestResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
                         `visible`="(d_show && CI_d_show)"),
                     list(
                         `name`="CI_d_upp", 
-                        `title`="Upper", 
-                        `type`="number", 
-                        `visible`="(d_show && CI_d_show)"),
-                    list(
-                        `name`="d_corr", 
-                        `title`="Cohen's d", 
-                        `type`="number", 
-                        `visible`="(d_show)"),
-                    list(
-                        `name`="CI_d_corr_low", 
-                        `title`="Lower", 
-                        `type`="number", 
-                        `visible`="(d_show && CI_d_show)"),
-                    list(
-                        `name`="CI_d_corr_upp", 
                         `title`="Upper", 
                         `type`="number", 
                         `visible`="(d_show && CI_d_show)"),
