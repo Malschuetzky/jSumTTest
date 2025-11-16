@@ -21,16 +21,16 @@ Main application is to comprehend reported Student's and Welch's t-test without 
 By using reported samples' descriptives (mean $M$, standard deviation $SD$, and sample size $n$) the module calculates:
 + Additional sample descriptives:
   + Standard errors of sample mean $SE(M)$
-  + Convidence intervals for sample mean $CI(M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
+  + Confidence intervals for sample mean $CI(M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
 + One- and two-tailed test satistics for Student's and Welch's t-tests:
   + $t$-value
   + $df$
   + $p$-value
   + Cohen's $d$
-  + Convidence interval for Cohen's $d$, $CI(d)$, of any witdh of your choice between 50 to 99.9% (default set to 95%)
+  + Confidence interval for Cohen's $d$, $CI(d)$, of any witdh of your choice between 50 to 99.9% (default set to 95%)
   + Mean-difference $\Delta M$
   + Standard error of mean-difference $SE(\Delta M)$
-  + Convidence interval for mean-difference $CI(\Delta M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
+  + Confidence interval for mean-difference $CI(\Delta M)$ of any witdh of your choice between 50 to 99.9% (default set to 95%)
   
 Additionaly, the module plots:
 + Mean and related CI for each sample in one graph
@@ -62,7 +62,7 @@ Based on required sample data in summarized form (sample size $n_i$, mean $M_i$,
 + Calculate standard errors of sample means for unknown population variance (Eid et al., 2017, F 8.23): \
 $$SE(M_i) = {SD_i \over \sqrt{n_i-1}}$$
 
-+ Calculate convidence intervals for sample means (Eid et al., 2017, F 8.26): \
++ Calculate confidence intervals for sample means (Eid et al., 2017, F 8.26): \
 $$CI(M_i) = M_i \pm (t(CI_{width};df) * SE(M_i))$$ \
 using R function `qt()`to calculate $t$-value of degrees of freedom `df` and user chosen CI-width `CI_width` 
 	```
@@ -97,14 +97,14 @@ $$df_{Welch} = {{\left( {SD_1^2 \over n_1} + {SD_2^2 \over n_2} \right)^2} \over
 + Calculate effect size for unequal variances and equal sample sizes (Cohen, 1988, eq. 2.2.1, 2.2.2 & 2.3.2):\
 $$d_{Welch} = {|\Delta M| \over \sqrt{ {SD_1^2 + SD_2^2 \over 2}}}$$
 
-+ Calculate convidence interval for effect size $CI(d_{Welch})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
++ Calculate confidence interval for effect size $CI(d_{Welch})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
 	````
 	CI_d_Welch <- psych::d.ci(d_Welch, n1=n_1, n2=n_2, alpha=CI_d_width)
 	CI_d_Welch_low <- CI_d_Welch[1]			# lower value
 	CI_d_Welch_upp <- CI_d_Welch[3]			# upper value
 	 ````
 
-+ Calculate convidence interval for mean-difference for
++ Calculate confidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
 $$CI_{Welch}(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Welch}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\
@@ -147,14 +147,14 @@ $$df_{Student} = (n_1-1)+(n_2-1)$$
 + Calculate effect size for Student's t-Test (Eid et al., 2017, eq. F 11.13b & Cohen, 1988, eq. 2.2.2):\
 $$d_{Student} = {|\Delta M| \over SD_{pooled}} = {|\Delta M| \over \sqrt{\sigma_{pooled}^2}}$$
 
-+ Calculate convidence interval for effect size $CI(d_{Student})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
++ Calculate confidence interval for effect size $CI(d_{Student})$ using psych R-package (Revelle, 2024) according to user chosen CI-width `CI_d_width`:
 	````
 	CI_d_Student <- psych::d.ci(d_Student, n1=n_1, n2=n_2, alpha=CI_d_width)
 	CI_d_Student_low <- CI_d_Student[1]			# lower value
 	CI_d_Student_upp <- CI_d_Student[3]			# upper value
 	 ````
 
-+ Calculate convidence interval for mean-difference for
++ Calculate confidence interval for mean-difference for
 	+ two-tailed hypothesis (Eid et al., 2017, eq. F 11.14a):\
 $$CI_{Student}(\Delta M) = \Delta M \pm t_{crit, two-tailed} * SE_{Student}(\Delta M)$$
 	+ one-tailed hypothesis $M_1 > M_2$ (Eid et al., 2017, eq. F 11.14b):\

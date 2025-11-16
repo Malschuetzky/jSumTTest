@@ -215,7 +215,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 #            table_descriptives_os$setError('calculation SE(M) error: variance status selection one-sample')
 #          }
 
-          ### calculate Convidence Interval for means
+          ### calculate Confidence Interval for means
           ## calculate t-values of given CI width
           # independent samples
           t_CI_value_M1 <- qt(p=CI_M_W, df=n1-1)
@@ -320,12 +320,12 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           		  
 		      # calculate Cohen's d effect size for SD1!=SD2 & n1=n2 (Cohen, 1988, eq. 2.2.1, 2.2.2 & 2.3.2)
           d_Welch <- abs(M_diff)/sqrt((SD1^2+SD2^2)/2)
-          # calculate Convidence Interval for Cohen's d (Revelle, 2025)
+          # calculate Confidence Interval for Cohen's d (Revelle, 2025)
           CI_d_Welch <- psych::d.ci(d_Welch, n1=n1, n2=n2, alpha=CI_d)	# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value
           CI_d_W_low <- CI_d_Welch[1]
           CI_d_W_upp <- CI_d_Welch[3]        
           
-          ## calculate Convidence Interval for means-difference (Eid et al., 2017, eq. F 11.14a - F 11.14c)
+          ## calculate Confidence Interval for means-difference (Eid et al., 2017, eq. F 11.14a - F 11.14c)
           if (hypo_tail_is == 'notequal') {
             # t-critical readout for CI, (M1 != M2), (Eid et al., 2017, eq. F 11.14a)
             t_crit_CI_deltaM_Welch <- qt(CI_deltaM_Wd_2s,df_Welch)
@@ -391,12 +391,12 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           # calculate Cohen's d effect size for Student's t-Test 
           #d_Stud <- t_Stud * sqrt((n1+n2)/(n1*n2)) = t_Stud * sqrt((1/n1)+(1/n2))           (Eid et al., 2017, eq. F 11.13b)
           d_Stud <- abs(M_diff)/sqrt(var_pooled_Stud) # abs() to prevent negative d values (see Cohen, 1988, eq. 2.2.2)
-          # calculate Convidence Interval for Cohen's d (Revelle, 2025)
+          # calculate Confidence Interval for Cohen's d (Revelle, 2025)
           CI_d_Stud <- psych::d.ci(d_Stud, n1=n1, n2=n2, alpha=CI_d)		# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value          
           CI_d_S_low <- CI_d_Stud[1]
           CI_d_S_upp <- CI_d_Stud[3]  
 
-          ## calculate Convidence Interval for means-difference (Eid et al., 2017, eq. F 11.14a - F 11.14c)
+          ## calculate Confidence Interval for means-difference (Eid et al., 2017, eq. F 11.14a - F 11.14c)
           if (hypo_tail_is == 'notequal') {
             # t-critical readout for CI, (M1 != M2), (Eid et al., 2017, eq. F 11.14a)
             t_crit_CI_deltaM_Stud <- qt(CI_deltaM_Wd_2s,df_Stud)
@@ -497,7 +497,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           # calculate corrected Cohen's d for direct interpretation (Cohen, 1988, eq. 2.3.4)
           d_os_corr <- d_os*sqrt(2)
                    
-          ## calculate Convidence Interval for Cohen's d' and d (Revelle, 2025)
+          ## calculate Confidence Interval for Cohen's d' and d (Revelle, 2025)
           # CI(d')
           CI_d_os <- psych::d.ci(d_os, n1=n_os, alpha=CI_d)	# psych::d.ci(): psych R-package | psych::d.ci[1]=lower value, psych::d.ci[2]=d, psych::d.ci[3]=upper value
           CI_d_os_low <- CI_d_os[1]
@@ -511,7 +511,7 @@ jSumTTestClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
           ## calculate standard error of mean difference
           # based on Eid et al. (2017, eq. F 8.25) SE(M) covers the same function in one-sample tests as SE(DeltaM) in independent t-tests
 
-          ## calculate Convidence Interval for mean-difference (Eid et al., 2017, eq. F 11.14a - F 11.14c)
+          ## calculate Confidence Interval for mean-difference (Eid et al., 2017, eq. F 11.14a - F 11.14c)
           if (hypo_tail_os == 'notequal_os') {
             # t-critical readout for CI, (M != c), (Eid et al., 2017, eq. F 11.14a)
             t_crit_CI_deltaM_os <- qt(CI_deltaM_Wd_2s,df_os)

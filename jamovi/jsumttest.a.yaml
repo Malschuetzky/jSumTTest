@@ -131,7 +131,7 @@ options:
       
     - name: CI_d_show
       type: Bool
-      title: Convidence Interval of effect size (CI(d))
+      title: Confidence Interval of effect size (CI(d))
       default: false      
 
     - name: CI_d_width
@@ -176,7 +176,7 @@ options:
       
     - name: CI_M_show
       type: Bool
-      title: Convidence Interval of mean (CI(M))
+      title: Confidence Interval of mean (CI(M))
       default: true      
 
     - name: CI_M_width
